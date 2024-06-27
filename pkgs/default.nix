@@ -26,5 +26,17 @@
     };
     pytreeclass = final.callPackage ./pytreeclass { };
     simple-pytree = final.callPackage ./simple-pytree { };
+    tensorflow-probability = prev.tensorflow-probability.overridePythonAttrs
+      (previousAttrs: {
+        src = previousAttrs.src.overrideAttrs {
+          patches = [
+            (pkgs.fetchpatch2 {
+              name = "sort-kind.patch";
+              url = "https://github.com/tensorflow/probability/commit/3e652805bc2b57189c18df0228e3749f528fe21a.diff";
+              hash = "sha256-J6SjylsSSG+zazTTQAevyS/UXSYhSrkk3KPCjNEXNMQ=";
+            })
+          ];
+        };
+      });
   });
 }
