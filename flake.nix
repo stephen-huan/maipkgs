@@ -1,5 +1,5 @@
 {
-  description = "Maipkgs is my personal collection of Nix build recipes";
+  description = "Personal collection of Nix build recipes";
 
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
