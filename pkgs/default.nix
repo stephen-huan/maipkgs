@@ -15,6 +15,7 @@
         };
       };
     };
+    mktestdocs = final.callPackage ./mktestdocs { };
     optree = final.callPackage ./optree { };
     # see tensorflow-build in pkgs/top-level/python-packages.nix
     orbax-checkpoint = prev.orbax-checkpoint.override {

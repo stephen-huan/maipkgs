@@ -32,6 +32,7 @@
             cola-ml
             cola-plum-dispatch
             gpjax
+            mktestdocs
             optree
             pytreeclass
             simple-pytree;
