@@ -19,7 +19,7 @@
     optree = final.callPackage ./optree { };
     # see tensorflow-build in pkgs/top-level/python-packages.nix
     orbax-checkpoint = prev.orbax-checkpoint.override {
-      protobuf = pkgs.python3Packages.protobuf.override {
+      protobuf = final.protobuf.override {
         protobuf = pkgs.protobuf_21.override {
           abseil-cpp = pkgs.abseil-cpp_202301;
         };
