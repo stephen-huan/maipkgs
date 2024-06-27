@@ -32,6 +32,11 @@ buildPythonPackage rec {
 
   format = "pyproject";
 
+  patches = [
+    ./dict.patch
+    ./posterior.patch
+  ];
+
   postPatch = ''
     substituteInPlace pyproject.toml \
       --replace \
