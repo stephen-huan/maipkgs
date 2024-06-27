@@ -16,6 +16,7 @@
 , pytestCheckHook
 , networkx
 , flax
+, mktestdocs
 }:
 
 buildPythonPackage rec {
@@ -72,11 +73,7 @@ buildPythonPackage rec {
     pytestCheckHook
     networkx
     flax
-  ];
-
-  disabledTestPaths = [
-    # requires mktestdocs
-    "tests/test_markdown.py"
+    mktestdocs
   ];
 
   pythonImportsCheck = [
