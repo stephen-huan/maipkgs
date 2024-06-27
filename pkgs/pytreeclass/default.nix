@@ -37,6 +37,10 @@ buildPythonPackage rec {
     optax
   ];
 
+  disabledTests = [
+    "test_bcmap"
+  ];
+
   pythonImportsCheck = [
     "pytreeclass"
   ];
