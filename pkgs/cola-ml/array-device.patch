@@ -1,0 +1,21 @@
+--- a/cola/backends/jax_fns.py
++++ b/cola/backends/jax_fns.py
+@@ -115,7 +115,8 @@ def while_loop_no_jit(cond_fun, body_fun, init_val):
+ 
+ 
+ def get_array_device(array):
+-    return array.device()
++    return next(iter(array.devices()))
++
+ 
+ 
+ def is_cuda_available():
+@@ -175,7 +176,7 @@ def get_default_device():
+ def device(device_name):
+     del device_name
+     zeros = jnp.zeros(1)
+-    return zeros.device()
++    return next(iter(zeros.devices()))
+ 
+ 
+ def diag(v, diagonal=0):

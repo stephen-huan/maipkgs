@@ -30,6 +30,10 @@ buildPythonPackage {
 
   format = "pyproject";
 
+  patches = [
+    ./array-device.patch
+  ];
+
   nativeBuildInputs = [
     setuptools
     setuptools-scm
