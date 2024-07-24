@@ -14,14 +14,14 @@
 
 buildPythonPackage rec {
   pname = "optree";
-  version = "0.11.0";
+  version = "0.12.1";
 
   # PyPi source doesn't contain tests/helpers.py
   src = fetchFromGitHub {
     owner = "metaopt";
     repo = "optree";
     rev = "v${version}";
-    sha256 = "sha256-VnnnEoXkYJO+S7baH+JZvsW18Tk3TiY9+Cd230OlZWo=";
+    sha256 = "sha256-4GvB9Z7qnEjsUSl+x5wd8czV80F50MwJdlNdylUU0zY=";
   };
 
   format = "pyproject";
