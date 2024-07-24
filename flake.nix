@@ -52,6 +52,19 @@
           installPhase = "touch $out";
         };
 
+        apps.${system} = {
+          update = {
+            type = "app";
+            program = lib.getExe (pkgs.writeShellApplication {
+              name = "update";
+              runtimeInputs = [ pkgs.nix-update ];
+              text = lib.concatMapStringsSep "\n"
+                (package: "nix-update --flake ${package} || true")
+                (builtins.attrNames self.packages.${system});
+            });
+          };
+        };
+
         devShells.${system}.default = pkgs.mkShell {
           packages = [
             pkgs.nix-update
