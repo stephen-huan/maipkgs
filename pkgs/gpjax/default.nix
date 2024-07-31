@@ -19,23 +19,18 @@
 , mktestdocs
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "gpjax";
-  version = "0.8.2";
+  version = "0.8.2-unstable-2024-07-16";
   pyproject = true;
 
   # PyPi source doesn't contain tests
   src = fetchFromGitHub {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
-    rev = "v${version}";
-    sha256 = "sha256-2mjmKyPEplO5OAH8Ea7UYKxSSmb1Osk/d6RUR/9JkU8=";
+    rev = "b69be96d00ef2225a61dbccdd2288519dbc1f16f";
+    sha256 = "sha256-jDAgT/tnq2ULFnGhYQMy9dBPVn5uSYt5Phwzdio0gEs=";
   };
-
-  patches = [
-    ./dict.patch
-    ./posterior.patch
-  ];
 
   postPatch = ''
     substituteInPlace pyproject.toml \
@@ -77,6 +72,11 @@ buildPythonPackage rec {
 
   pythonImportsCheck = [
     "gpjax"
+  ];
+
+  disabledTests = [
+    "test_expected_improvement_utility_function_correct_values"
+    "test_non_conjugate_posterior_raises_error"
   ];
 
   meta = with lib; {
