@@ -1,5 +1,6 @@
 { lib
 , fetchFromGitHub
+, fetchpatch2
 , buildPythonPackage
 , setuptools
 , setuptools-scm
@@ -25,12 +26,16 @@ buildPythonPackage {
   src = fetchFromGitHub {
     owner = "wilson-labs";
     repo = "cola";
-    rev = "4af199e4e7bd647241ecb60c3befea401b6dc7b2";
-    hash = "sha256-MkswIJcXVWRFjSGXK0DGLZiM2JbDOqUrm2YMyis6q/Q=";
+    rev = "9562ae1ff850ae99c96d5da441a5850184c66a1e";
+    hash = "sha256-swFJxCT0DkZpQnsSJXkmWZ4yEDh9k5MjA8xk5WxnCPU=";
   };
 
   patches = [
-    ./array-device.patch
+    (fetchpatch2 {
+      name = "array-device.patch";
+      url = "https://github.com/wilson-labs/cola/pull/93.diff";
+      hash = "sha256-roo6lGrMTOtPGHRvK+fv4uVDmWpmNllIqtoIOn/JVSw=";
+    })
   ];
 
   build-system = [
