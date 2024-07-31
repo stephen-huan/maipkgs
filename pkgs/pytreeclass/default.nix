@@ -22,7 +22,6 @@ buildPythonPackage rec {
 
   build-system = [
     setuptools
-    jaxlib
   ];
 
   dependencies = [
@@ -32,6 +31,7 @@ buildPythonPackage rec {
 
   nativeCheckInputs = [
     pytestCheckHook
+    jaxlib
     pytest-benchmark
     optax
   ];

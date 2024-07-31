@@ -24,7 +24,6 @@ buildPythonPackage rec {
 
   build-system = [
     poetry-core
-    jaxlib
   ];
 
   dependencies = [
@@ -34,6 +33,7 @@ buildPythonPackage rec {
 
   nativeCheckInputs = [
     pytestCheckHook
+    jaxlib
     flax
   ];
 
