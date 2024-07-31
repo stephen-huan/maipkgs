@@ -38,7 +38,7 @@ buildPythonPackage {
     setuptools-scm
   ];
 
-  propagatedBuildInputs = [
+  dependencies = [
     scipy
     tqdm
     cola-plum-dispatch

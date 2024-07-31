@@ -35,7 +35,7 @@ buildPythonPackage rec {
     cmake
   ];
 
-  propagatedBuildInputs = [
+  dependencies = [
     typing-extensions
   ];
 

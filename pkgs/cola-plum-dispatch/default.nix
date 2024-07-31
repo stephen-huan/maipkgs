@@ -28,7 +28,7 @@ buildPythonPackage {
     hatch-vcs
   ];
 
-  propagatedBuildInputs = [
+  dependencies = [
     beartype
     typing-extensions
   ];

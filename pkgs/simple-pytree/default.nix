@@ -27,7 +27,7 @@ buildPythonPackage rec {
     jaxlib
   ];
 
-  propagatedBuildInputs = [
+  dependencies = [
     jax
     typing-extensions
   ];

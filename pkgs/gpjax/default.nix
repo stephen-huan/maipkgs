@@ -55,7 +55,7 @@ buildPythonPackage rec {
     jaxlib
   ];
 
-  propagatedBuildInputs = [
+  dependencies = [
     optax
     jaxopt
     jaxtyping
