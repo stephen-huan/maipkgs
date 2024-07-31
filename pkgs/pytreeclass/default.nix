@@ -13,13 +13,12 @@
 buildPythonPackage rec {
   pname = "pytreeclass";
   version = "0.9.2";
+  pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
     hash = "sha256-28KxPOrUxKs7sssCb85Ermc5ONONPgkef3yHzKobfbg=";
   };
-
-  format = "pyproject";
 
   nativeBuildInputs = [
     setuptools

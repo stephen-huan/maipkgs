@@ -15,6 +15,7 @@
 buildPythonPackage rec {
   pname = "optree";
   version = "0.12.1";
+  pyproject = true;
 
   # PyPi source doesn't contain tests/helpers.py
   src = fetchFromGitHub {
@@ -23,8 +24,6 @@ buildPythonPackage rec {
     rev = "v${version}";
     sha256 = "sha256-4GvB9Z7qnEjsUSl+x5wd8czV80F50MwJdlNdylUU0zY=";
   };
-
-  format = "pyproject";
 
   # hack: dontUseCmakeBuildDir = true doesn't work
   # https://discourse.nixos.org/t/27705

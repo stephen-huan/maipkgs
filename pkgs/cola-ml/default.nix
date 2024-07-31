@@ -20,6 +20,7 @@
 buildPythonPackage {
   pname = "cola-ml";
   version = "0.0.5";
+  pyproject = true;
 
   src = fetchFromGitHub {
     owner = "wilson-labs";
@@ -27,8 +28,6 @@ buildPythonPackage {
     rev = "4af199e4e7bd647241ecb60c3befea401b6dc7b2";
     hash = "sha256-MkswIJcXVWRFjSGXK0DGLZiM2JbDOqUrm2YMyis6q/Q=";
   };
-
-  format = "pyproject";
 
   patches = [
     ./array-device.patch

@@ -8,6 +8,7 @@
 buildPythonPackage rec {
   pname = "mktestdocs";
   version = "0.2.1";
+  pyproject = true;
 
   # PyPi source doesn't contain tests
   src = fetchFromGitHub {
@@ -16,8 +17,6 @@ buildPythonPackage rec {
     rev = version;
     sha256 = "sha256-snlt6SDiDYr04b2b2NgBC/1IBffpei034vFx3fnYUOc=";
   };
-
-  format = "pyproject";
 
   nativeBuildInputs = [
     setuptools

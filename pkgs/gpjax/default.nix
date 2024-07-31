@@ -22,6 +22,7 @@
 buildPythonPackage rec {
   pname = "gpjax";
   version = "0.8.2";
+  pyproject = true;
 
   # PyPi source doesn't contain tests
   src = fetchFromGitHub {
@@ -30,8 +31,6 @@ buildPythonPackage rec {
     rev = "v${version}";
     sha256 = "sha256-2mjmKyPEplO5OAH8Ea7UYKxSSmb1Osk/d6RUR/9JkU8=";
   };
-
-  format = "pyproject";
 
   patches = [
     ./dict.patch

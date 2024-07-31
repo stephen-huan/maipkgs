@@ -13,6 +13,7 @@
 buildPythonPackage {
   pname = "cola_plum_dispatch";
   version = "0.1.4";
+  pyproject = true;
 
   # PyPi source doesn't contain tests
   src = fetchFromGitHub {
@@ -21,8 +22,6 @@ buildPythonPackage {
     rev = "34bbcd14bb03dc3e006751015f289acc3b697335";
     sha256 = "sha256-ZyWWan6EpM3s8n+oIcBRfFmY831cS+FqF3/FJIJ1AG8=";
   };
-
-  format = "pyproject";
 
   nativeBuildInputs = [
     hatchling

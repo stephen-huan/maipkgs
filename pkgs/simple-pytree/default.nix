@@ -12,6 +12,7 @@
 buildPythonPackage rec {
   pname = "simple_pytree";
   version = "0.2.2";
+  pyproject = true;
 
   # PyPi source doesn't contain tests
   src = fetchFromGitHub {
@@ -20,8 +21,6 @@ buildPythonPackage rec {
     rev = version;
     sha256 = "sha256-iB0DOLraRXMhLAqcV7KxziCtvuRICL1OYvLbI34KdLQ=";
   };
-
-  format = "pyproject";
 
   nativeBuildInputs = [
     poetry-core
