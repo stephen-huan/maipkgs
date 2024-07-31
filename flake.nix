@@ -65,7 +65,11 @@
           };
         };
 
-        devShells.${system}.default = pkgs.mkShell {
+        devShells.${system}.default = (pkgs.mkShellNoCC.override {
+          stdenv = pkgs.stdenvNoCC.override {
+            initialPath = [ pkgs.coreutils ];
+          };
+        }) {
           packages = [
             pkgs.nix-update
           ]
