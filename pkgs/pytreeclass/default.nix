@@ -20,7 +20,7 @@ buildPythonPackage rec {
     hash = "sha256-28KxPOrUxKs7sssCb85Ermc5ONONPgkef3yHzKobfbg=";
   };
 
-  nativeBuildInputs = [
+  build-system = [
     setuptools
     jaxlib
   ];

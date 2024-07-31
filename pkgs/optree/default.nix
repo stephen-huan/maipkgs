@@ -29,7 +29,7 @@ buildPythonPackage rec {
   # https://discourse.nixos.org/t/27705
   dontUseCmakeConfigure = true;
 
-  nativeBuildInputs = [
+  build-system = [
     setuptools
     pybind11
     cmake

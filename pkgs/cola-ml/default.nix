@@ -33,7 +33,7 @@ buildPythonPackage {
     ./array-device.patch
   ];
 
-  nativeBuildInputs = [
+  build-system = [
     setuptools
     setuptools-scm
   ];

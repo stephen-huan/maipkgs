@@ -22,7 +22,7 @@ buildPythonPackage rec {
     sha256 = "sha256-iB0DOLraRXMhLAqcV7KxziCtvuRICL1OYvLbI34KdLQ=";
   };
 
-  nativeBuildInputs = [
+  build-system = [
     poetry-core
     jaxlib
   ];

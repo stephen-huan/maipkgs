@@ -50,7 +50,7 @@ buildPythonPackage rec {
         'beartype = ">=0.16.2"'
   '';
 
-  nativeBuildInputs = [
+  build-system = [
     poetry-core
     jaxlib
   ];
