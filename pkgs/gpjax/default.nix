@@ -19,30 +19,33 @@
 , mktestdocs
 }:
 
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "gpjax";
-  version = "0.8.2-unstable-2024-07-16";
+  version = "0.9.0";
   pyproject = true;
 
   # PyPi source doesn't contain tests
   src = fetchFromGitHub {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
-    rev = "b69be96d00ef2225a61dbccdd2288519dbc1f16f";
-    sha256 = "sha256-jDAgT/tnq2ULFnGhYQMy9dBPVn5uSYt5Phwzdio0gEs=";
+    rev = "v${version}";
+    sha256 = "sha256-XqU1W0G1EeZ4qveQWNyXXnJa6OTY4oxWhngDJHhhE9A=";
   };
 
   postPatch = ''
     substituteInPlace pyproject.toml \
       --replace \
-        'optax = "^0.1.4"' \
-        'optax = ">=0.1.4"' \
+        'jax = "<0.4.28"' \
+        'jax = ">=0.4.28"' \
       --replace \
-        'tensorflow-probability = "^0.22.0"' \
+        'jaxlib = "<0.4.28"' \
+        'jaxlib = ">=0.4.28"' \
+      --replace \
+        'tensorflow-probability = "^0.24.0"' \
         'tensorflow-probability = ">=0.21.0"' \
       --replace \
-        'beartype = "^0.16.2"' \
-        'beartype = ">=0.16.2"'
+        'beartype = "^0.16.1"' \
+        'beartype = ">=0.16.1"'
   '';
 
   build-system = [
@@ -60,13 +63,13 @@ buildPythonPackage {
     jax
     orbax-checkpoint
     cola-ml
+    flax
   ];
 
   nativeCheckInputs = [
     pytestCheckHook
     jaxlib
     networkx
-    flax
     mktestdocs
   ];
 
