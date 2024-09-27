@@ -1,27 +1,27 @@
 { lib
 , fetchFromGitHub
 , buildPythonPackage
-, poetry-core
-, optax
-, jaxopt
-, jaxtyping
-, tqdm
-, simple-pytree
-, tensorflow-probability
-, beartype
+, hatchling
 , jax
 , jaxlib
-, orbax-checkpoint
+, optax
+, jaxtyping
+, tqdm
+, tensorflow-probability
+, beartype
 , cola-ml
-, pytestCheckHook
-, networkx
+, jaxopt
 , flax
+, numpy
+, pytestCheckHook
+, pytest-xdist
 , mktestdocs
+, networkx
 }:
 
 buildPythonPackage rec {
   pname = "gpjax";
-  version = "0.9.0";
+  version = "0.9.1";
   pyproject = true;
 
   # PyPi source doesn't contain tests
@@ -29,57 +29,63 @@ buildPythonPackage rec {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
     rev = "v${version}";
-    sha256 = "sha256-XqU1W0G1EeZ4qveQWNyXXnJa6OTY4oxWhngDJHhhE9A=";
+    sha256 = "sha256-emgFjGvwXyhpuQY5MozU93ogWv23PQkIgJUh4MLgyxc=";
   };
 
   postPatch = ''
     substituteInPlace pyproject.toml \
       --replace \
-        'jax = "<0.4.28"' \
-        'jax = ">=0.4.28"' \
+        'jax<0.4.28' \
+        'jax>=0.4.28' \
       --replace \
-        'jaxlib = "<0.4.28"' \
-        'jaxlib = ">=0.4.28"' \
+        'jaxlib<0.4.28' \
+        'jaxlib>=0.4.28' \
       --replace \
-        'tensorflow-probability = "^0.24.0"' \
-        'tensorflow-probability = ">=0.21.0"' \
+        'tensorflow-probability>=0.24.0' \
+        'tensorflow-probability>=0.21.0' \
       --replace \
-        'beartype = "^0.16.1"' \
-        'beartype = ">=0.16.1"'
+        'cola-ml==0.0.5' \
+        'cola-ml>=0.0.5' \
+      --replace \
+        'jaxopt==0.8.2' \
+        'jaxopt>=0.8.2' \
   '';
 
   build-system = [
-    poetry-core
+    hatchling
   ];
 
   dependencies = [
+    jax
     optax
-    jaxopt
     jaxtyping
     tqdm
-    simple-pytree
     tensorflow-probability
     beartype
-    jax
-    orbax-checkpoint
     cola-ml
+    jaxopt
     flax
+    numpy
   ];
 
   nativeCheckInputs = [
     pytestCheckHook
+    pytest-xdist
+    mktestdocs
     jaxlib
     networkx
-    mktestdocs
   ];
 
   pythonImportsCheck = [
     "gpjax"
   ];
 
+  pytestFlagsArray = [ "." "-v" "-n auto" ];
+
   disabledTests = [
-    "test_expected_improvement_utility_function_correct_values"
-    "test_non_conjugate_posterior_raises_error"
+    # 'jaxlib.xla_extension.ArrayImpl' object has no attribute 'device'
+    "test_identity"
+    "test_variational_gaussians"
   ];
 
   meta = with lib; {

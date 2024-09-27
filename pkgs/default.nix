@@ -4,17 +4,7 @@
   python3Packages = pkgs.python311Packages.overrideScope (final: prev: {
     cola-ml = final.callPackage ./cola-ml { };
     cola-plum-dispatch = final.callPackage ./cola-plum-dispatch { };
-    gpjax = final.callPackage ./gpjax {
-      simple-pytree = final.simple-pytree.overridePythonAttrs rec {
-        version = "0.1.7";
-        src = pkgs.fetchFromGitHub {
-          owner = "cgarciae";
-          repo = "simple-pytree";
-          rev = version;
-          sha256 = "sha256-Pss7LUnH8u/QQI+amnlKbqyc8tq8XNpcDJ6541pQxUw=";
-        };
-      };
-    };
+    gpjax = final.callPackage ./gpjax { };
     mktestdocs = final.callPackage ./mktestdocs { };
     optree = final.callPackage ./optree { };
     # see tensorflow-build in pkgs/top-level/python-packages.nix
