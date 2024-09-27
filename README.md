@@ -22,4 +22,3 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
   - `cola-plum-dispatch`
   - `gpjax`
   - `mktestdocs`
-  - `optree`

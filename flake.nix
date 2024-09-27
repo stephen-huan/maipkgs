@@ -32,8 +32,7 @@
             cola-ml
             cola-plum-dispatch
             gpjax
-            mktestdocs
-            optree;
+            mktestdocs;
         };
 
         formatter.${system} = formatter;
