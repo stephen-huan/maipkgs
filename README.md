@@ -23,5 +23,4 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
   - `gpjax`
   - `mktestdocs`
   - `optree`
-  - `pytreeclass`
   - `simple-pytree`

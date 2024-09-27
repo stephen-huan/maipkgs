@@ -34,7 +34,6 @@
             gpjax
             mktestdocs
             optree
-            pytreeclass
             simple-pytree;
         };
 

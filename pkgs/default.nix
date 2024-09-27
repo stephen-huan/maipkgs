@@ -25,7 +25,6 @@
         };
       };
     };
-    pytreeclass = final.callPackage ./pytreeclass { };
     simple-pytree = final.callPackage ./simple-pytree { };
     tensorflow-probability = prev.tensorflow-probability.overridePythonAttrs
       (previousAttrs: {
