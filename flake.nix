@@ -33,8 +33,7 @@
             cola-plum-dispatch
             gpjax
             mktestdocs
-            optree
-            simple-pytree;
+            optree;
         };
 
         formatter.${system} = formatter;
