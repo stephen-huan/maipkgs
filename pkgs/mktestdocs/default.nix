@@ -7,7 +7,7 @@
 
 buildPythonPackage rec {
   pname = "mktestdocs";
-  version = "0.2.1";
+  version = "0.2.3";
   pyproject = true;
 
   # PyPi source doesn't contain tests
@@ -15,7 +15,7 @@ buildPythonPackage rec {
     owner = "koaning";
     repo = "mktestdocs";
     rev = version;
-    sha256 = "sha256-snlt6SDiDYr04b2b2NgBC/1IBffpei034vFx3fnYUOc=";
+    sha256 = "sha256-egLlgq0lQOk0cPBly01zQ0rkl7D7Rf/bZ4en5oG+wlE=";
   };
 
   build-system = [
