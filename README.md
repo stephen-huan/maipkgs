@@ -22,6 +22,8 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
   - `cola-plum-dispatch`
   - `gpjax`
   - `mktestdocs`
-- [BBFMM3D](https://github.com/ruoxi-wang/BBFMM3D)
+- [BBFMM3D](https://github.com/ruoxi-wang/BBFMM3D) and
+  (my [fork](https://github.com/stephen-huan/PBBFMM3D)
+  of) [PBBFMM3D](https://github.com/ruoxi-wang/PBBFMM3D)
 - [mugrade](https://github.com/dlsyscourse/mugrade), the grading
   system for [10-714 Deep Learning Systems](https://dlsyscourse.org/)
