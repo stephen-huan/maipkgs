@@ -7,6 +7,7 @@
     cola-plum-dispatch = final.callPackage ./cola-plum-dispatch { };
     gpjax = final.callPackage ./gpjax { };
     mktestdocs = final.callPackage ./mktestdocs { };
+    mugrade = final.callPackage ./mugrade { };
     # see tensorflow-build in pkgs/top-level/python-packages.nix
     orbax-checkpoint = prev.orbax-checkpoint.override {
       protobuf = final.protobuf4.override {

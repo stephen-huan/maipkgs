@@ -33,7 +33,8 @@
             cola-ml
             cola-plum-dispatch
             gpjax
-            mktestdocs;
+            mktestdocs
+            mugrade;
         };
 
         formatter.${system} = formatter;

@@ -23,3 +23,5 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
   - `gpjax`
   - `mktestdocs`
 - [BBFMM3D](https://github.com/ruoxi-wang/BBFMM3D)
+- [mugrade](https://github.com/dlsyscourse/mugrade), the grading
+  system for [10-714 Deep Learning Systems](https://dlsyscourse.org/)
