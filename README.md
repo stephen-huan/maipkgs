@@ -17,8 +17,9 @@ All packages are exposed through the flake attribute
 both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
 `maipkgs.legacyPackages.${system}.python.withPackages` interface.
 
-- [GPJax](https://docs.jaxgaussianprocesses.com/) and dependencies
+- [GPJax](https://docs.jaxgaussianprocesses.com/) and its dependencies
   - `cola-ml`
   - `cola-plum-dispatch`
   - `gpjax`
   - `mktestdocs`
+- [BBFMM3D](https://github.com/ruoxi-wang/BBFMM3D)

@@ -1,0 +1,31 @@
+From 8e1dea8790c290856053e7e09cadafdfdf06bb4f Mon Sep 17 00:00:00 2001
+From: Stephen Huan <stephen.huan@cgdct.moe>
+Date: Tue, 19 Nov 2024 20:05:52 -0800
+Subject: [PATCH 1/2] build(Makefile): use fftw3
+
+---
+ Makefile | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 2c2c2c6..665148d 100644
+--- a/Makefile
++++ b/Makefile
+@@ -3,11 +3,11 @@
+ # Description: Makefile for BBFMM3D
+ #
+ 
+-CC = g++
+-LD = g++
++CC = $(CXX)
++LD = $(CXX)
+ CFLAGS  = -c -Wall -O3 -I ./include/ 
+ LDPATH = -L/usr/lib
+-LDFLAGS = -llapack -lblas -lrfftw -lfftw -lm 
++LDFLAGS = -llapack -lblas -lfftw3 -lm 
+ PFLAG  =
+ SOURCES =  ./src/kernel_Types.cpp ./src/H2_3D_Tree.cpp ./src/read_metadata.cpp ./src/read_sources.cpp ./src/write_Into_Binary_File.cpp
+ 
+-- 
+2.46.1
+

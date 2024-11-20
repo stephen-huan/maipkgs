@@ -28,6 +28,7 @@
         };
 
         packages.${system} = {
+          inherit (maipkgs) bbfmm3d;
           inherit (maipkgs.python3Packages)
             cola-ml
             cola-plum-dispatch
