@@ -23,7 +23,7 @@ stdenv.mkDerivation {
     ./Makefile.patch
   ];
 
-  outputs = [ "dev" "out" ];
+  outputs = [ "out" "dev" ];
 
   nativeBuildInputs = [
     gnumake
@@ -38,8 +38,8 @@ stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/include
-    cp -r include -T $out/include
+    mkdir -p $dev/include
+    cp -r include -T $dev/include
     mkdir -p $out/src
     cp -r src -T $out/src
 
