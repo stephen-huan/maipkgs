@@ -10,7 +10,6 @@
 stdenv.mkDerivation {
   pname = "bbfmm3d";
   version = "0-unstable-2018-09-13";
-  pyproject = true;
 
   src = fetchFromGitHub {
     owner = "ruoxi-wang";
