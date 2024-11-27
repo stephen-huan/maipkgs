@@ -17,13 +17,12 @@ All packages are exposed through the flake attribute
 both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
 `maipkgs.legacyPackages.${system}.python.withPackages` interface.
 
+- [BBFMM3D](https://github.com/ruoxi-wang/BBFMM3D) and
+  (my [fork](https://github.com/stephen-huan/PBBFMM3D)
+  of) [PBBFMM3D](https://github.com/ruoxi-wang/PBBFMM3D)
 - [GPJax](https://docs.jaxgaussianprocesses.com/) and its dependencies
   - `cola-ml`
   - `cola-plum-dispatch`
   - `gpjax`
-  - `mktestdocs`
-- [BBFMM3D](https://github.com/ruoxi-wang/BBFMM3D) and
-  (my [fork](https://github.com/stephen-huan/PBBFMM3D)
-  of) [PBBFMM3D](https://github.com/ruoxi-wang/PBBFMM3D)
 - [mugrade](https://github.com/dlsyscourse/mugrade), the grading
   system for [10-714 Deep Learning Systems](https://dlsyscourse.org/)
