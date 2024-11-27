@@ -33,7 +33,6 @@
             cola-ml
             cola-plum-dispatch
             gpjax
-            mktestdocs
             mugrade
             pbbfmm3d;
         };
