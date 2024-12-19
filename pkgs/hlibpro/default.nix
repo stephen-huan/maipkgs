@@ -6,13 +6,13 @@
 let
   os = "Ubuntu24.04";
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "hlibpro";
   version = "3.1.2";
 
   src = fetchzip {
-    url = "https://www.hlibpro.com/archives/${version}"
-      + "/hlibpro-${version}-${os}.tgz";
+    url = "https://www.hlibpro.com/archives/${finalAttrs.version}"
+      + "/hlibpro-${finalAttrs.version}-${os}.tgz";
     hash = "sha256-3+ZhN6AyR1P2ykIFwr4IOucdWSashkkZS0lVq1v0sMs=";
   };
 
@@ -42,4 +42,4 @@ stdenv.mkDerivation rec {
     outputsToInstall = [ "out" ];
     maintainers = with maintainers; [ stephen-huan ];
   };
-}
+})
