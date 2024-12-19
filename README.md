@@ -28,3 +28,4 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
 - [mugrade](https://github.com/dlsyscourse/mugrade), the grading
   system for [10-714 Deep Learning Systems](https://dlsyscourse.org/)
 - [SLEEF](https://sleef.org/)
+- [triton-cpu](https://github.com/triton-lang/triton-cpu)

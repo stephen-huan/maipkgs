@@ -1,0 +1,11 @@
+--- a/python/setup.py
++++ b/python/setup.py
+@@ -582,7 +582,7 @@ download_and_copy(
+       f"https://anaconda.org/nvidia/cuda-cupti/{version}/download/{system}-{arch}/cuda-cupti-{version}-0.tar.bz2")
+      (*version.split('.'))))
+
+-backends = [*BackendInstaller.copy(["nvidia", "amd", "cpu"]), *BackendInstaller.copy_externals()]
++backends = [*BackendInstaller.copy(os.environ.get("TRITON_BACKENDS_TUPLE", "nvidia;amd;cpu").split(";")), *BackendInstaller.copy_externals()]
+
+
+ def add_link_to_backends():

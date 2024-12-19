@@ -37,7 +37,8 @@
             cola-plum-dispatch
             gpjax
             mugrade
-            pbbfmm3d;
+            pbbfmm3d
+            triton-cpu;
         };
 
         formatter.${system} = formatter;
