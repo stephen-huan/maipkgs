@@ -27,3 +27,4 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
 - [HLIBpro](https://www.hlibpro.com/)
 - [mugrade](https://github.com/dlsyscourse/mugrade), the grading
   system for [10-714 Deep Learning Systems](https://dlsyscourse.org/)
+- [SLEEF](https://sleef.org/)

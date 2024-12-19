@@ -30,7 +30,8 @@
         packages.${system} = {
           inherit (maipkgs)
             bbfmm3d
-            hlibpro;
+            hlibpro
+            sleef;
           inherit (maipkgs.python3Packages)
             cola-ml
             cola-plum-dispatch
