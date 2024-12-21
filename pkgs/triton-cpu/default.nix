@@ -27,6 +27,8 @@ let
   backendsTuple = builtins.concatStringsSep ";" backends;
 in
 triton'.overridePythonAttrs (previousAttrs: {
+  # version = "3.2.0-unstable-2024-12-19";
+
   src = fetchFromGitHub {
     owner = "triton-lang";
     repo = "triton-cpu";

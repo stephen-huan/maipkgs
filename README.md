@@ -25,6 +25,8 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
   - `cola-plum-dispatch`
   - `gpjax`
 - [HLIBpro](https://www.hlibpro.com/)
+- [jax-triton](https://github.com/jax-ml/jax-triton) with
+  [triton-cpu support](https://github.com/jax-ml/jax-triton/pull/322)
 - [mugrade](https://github.com/dlsyscourse/mugrade), the grading
   system for [10-714 Deep Learning Systems](https://dlsyscourse.org/)
 - [SLEEF](https://sleef.org/)
