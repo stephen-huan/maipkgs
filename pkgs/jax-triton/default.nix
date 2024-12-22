@@ -26,6 +26,11 @@ buildPythonPackage rec {
 
   patches = [
     (fetchpatch2 {
+      name = "triton_call-annotation.patch";
+      url = "https://github.com/jax-ml/jax-triton/pull/323.diff";
+      hash = "sha256-sWAIYLVD2Lpatnpxp07Dwn7Pm3vIq0+BcqyoT0ha9Fw=";
+    })
+    (fetchpatch2 {
       name = "cpu-backend.patch";
       url = "https://github.com/jax-ml/jax-triton/pull/322.diff";
       hash = "sha256-Cv5blgoB0zzEeQ8glPTibkOHh2HR3fO02Ci9Na/6fKA=";
