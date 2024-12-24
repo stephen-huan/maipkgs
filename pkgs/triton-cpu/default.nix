@@ -1,12 +1,7 @@
 { lib
-, addDriverRunpath
-, config
 , fetchFromGitHub
-, substituteAll
 , triton
 , triton-llvm
-, cudaSupport ? config.cudaSupport
-, rocmSupport ? config.rocmSupport
 }:
 let
   triton-llvm' = triton-llvm.overrideAttrs {
@@ -21,30 +16,21 @@ let
   triton' = triton.override {
     llvm = triton-llvm';
   };
-  backends = [ "cpu" ]
-    ++ lib.optional cudaSupport "nvidia"
-    ++ lib.optional rocmSupport "amd";
-  backendsTuple = builtins.concatStringsSep ";" backends;
 in
 triton'.overridePythonAttrs (previousAttrs: {
-  # version = "3.2.0-unstable-2024-12-19";
+  version = "3.2.0-unstable-2024-12-23";
 
   src = fetchFromGitHub {
     owner = "triton-lang";
     repo = "triton-cpu";
-    rev = "8390fa2e092bfc8824f78edb344d2142b6818c06";
-    hash = "sha256-eXWCcwXUpLk7VegrBmwYBSzZ4Fweouc2/zm5H0Cbe7k=";
+    rev = "daa7eb01e1f3fe60d0e0b9a643886f32d3c3ffe7";
+    hash = "sha256-AsAUP1jakVeBwk7I+zHesuLftkN7d12MWNHROZSPlgc=";
     # for sleef
     fetchSubmodules = true;
   };
 
   patches = [
-    (substituteAll {
-      src = ./0001-_build-allow-extra-cc-flags.patch;
-      ccCmdExtraFlags = "-Wl,-rpath,${addDriverRunpath.driverLink}/lib";
-    })
-    ./0002-disable-bin.patch
-    ./0003-backends-tuple.patch
+    ./nvidia-headers.patch
   ];
 
   postPatch = "";
@@ -53,7 +39,5 @@ triton'.overridePythonAttrs (previousAttrs: {
     LLVM_INCLUDE_DIRS = "${lib.getDev triton-llvm'}";
     LLVM_LIBRARY_DIR = "${lib.getLib triton-llvm'}";
     LLVM_SYSPATH = "${triton-llvm'}";
-    TRITON_APPEND_CMAKE_ARGS = "-DTRITON_CODEGEN_BACKENDS=${backendsTuple}";
-    TRITON_BACKENDS_TUPLE = backendsTuple;
   };
 })

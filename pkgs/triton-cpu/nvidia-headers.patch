@@ -1,0 +1,10 @@
+diff --git a/third_party/nvidia/backend/include/cuda.h b/third_party/nvidia/backend/include/cuda.h
+new file mode 100644
+index 00000000..f7923155
+--- /dev/null
++++ b/third_party/nvidia/backend/include/cuda.h
+@@ -0,0 +1 @@
++typedef void *cudaStream_t;
+diff --git a/third_party/nvidia/backend/include/driver_types.h b/third_party/nvidia/backend/include/driver_types.h
+new file mode 100644
+index 00000000..e69de29b
