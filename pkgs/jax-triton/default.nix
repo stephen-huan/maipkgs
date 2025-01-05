@@ -33,7 +33,7 @@ buildPythonPackage rec {
     (fetchpatch2 {
       name = "cpu-backend.patch";
       url = "https://github.com/jax-ml/jax-triton/pull/322.diff";
-      hash = "sha256-Cv5blgoB0zzEeQ8glPTibkOHh2HR3fO02Ci9Na/6fKA=";
+      hash = "sha256-gkJmu91LIbHD29+5EnaHOzSZnpW8JbGLFMbTQY9RtTA=";
     })
   ];
 
