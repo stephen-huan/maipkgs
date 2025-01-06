@@ -1,0 +1,9 @@
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -0,0 +1,6 @@
++[tool.setuptools]
++packages = ["kernels", "kernels.blocksparse"]
++
++[project]
++name = "kernels"
++version = "0.1.0"

@@ -18,6 +18,7 @@
       ];
     });
     jax-triton = final.callPackage ./jax-triton { };
+    kernels = final.callPackage ./kernels { };
     mugrade = final.callPackage ./mugrade { };
     pbbfmm3d = final.callPackage ./pbbfmm3d { };
     triton-cpu = final.callPackage ./triton-cpu { };

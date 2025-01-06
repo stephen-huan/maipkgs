@@ -37,6 +37,7 @@
             cola-plum-dispatch
             gpjax
             jax-triton
+            kernels
             mugrade
             pbbfmm3d
             triton-cpu;
