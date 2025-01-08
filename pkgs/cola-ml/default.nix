@@ -21,7 +21,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "wilson-labs";
     repo = "cola";
-    rev = "v${version}";
+    tag = "v${version}";
     hash = "sha256-w34M7VXrjJ/8Y45ki62aXwcOsNhiFs65YoIEYTXEhH4=";
   };
 

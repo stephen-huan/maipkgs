@@ -28,7 +28,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
-    rev = "v${version}";
+    tag = "v${version}";
     sha256 = "sha256-SslNnfKQlyXsWlEcqg20gdBR+J8XytJz4rgW/pVmOlI=";
   };
 
