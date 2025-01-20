@@ -3,7 +3,6 @@
 , buildPythonPackage
 , hatchling
 , jax
-, jaxlib
 , optax
 , jaxtyping
 , tqdm
@@ -72,7 +71,6 @@ buildPythonPackage rec {
     pytestCheckHook
     pytest-xdist
     mktestdocs
-    jaxlib
     networkx
   ];
 

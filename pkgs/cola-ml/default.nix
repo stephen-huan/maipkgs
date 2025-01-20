@@ -9,7 +9,6 @@
 , optree
 , pytestCheckHook
 , jax
-, jaxlib
 , torch
 }:
 
@@ -40,7 +39,6 @@ buildPythonPackage rec {
   nativeCheckInputs = [
     pytestCheckHook
     jax
-    jaxlib
     torch
   ];
 
