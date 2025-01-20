@@ -19,13 +19,13 @@ let
   };
 in
 triton'.overridePythonAttrs (previousAttrs: {
-  version = "3.2.0-unstable-2024-12-23";
+  version = "3.2.0-unstable-2025-01-13";
 
   src = fetchFromGitHub {
     owner = "triton-lang";
     repo = "triton-cpu";
-    rev = "daa7eb01e1f3fe60d0e0b9a643886f32d3c3ffe7";
-    hash = "sha256-AsAUP1jakVeBwk7I+zHesuLftkN7d12MWNHROZSPlgc=";
+    rev = "dc8dfb6d28c4bc7cc83a7eb5defd1279ff093d4c";
+    hash = "sha256-fixlHv/WZ+hvAHIaS5R+pDFawtufvRI7fI3a1CG536M=";
     # for sleef
     fetchSubmodules = true;
   };
