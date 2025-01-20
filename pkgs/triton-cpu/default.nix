@@ -1,5 +1,6 @@
 { lib
 , fetchFromGitHub
+, fetchpatch2
 , triton
 , triton-llvm
 }:
@@ -30,7 +31,11 @@ triton'.overridePythonAttrs (previousAttrs: {
   };
 
   patches = [
-    ./nvidia-headers.patch
+    (fetchpatch2 {
+      name = "cudaless.patch";
+      url = "https://github.com/triton-lang/triton/pull/5492.patch";
+      hash = "sha256-Ww33nSJRmEyX+bh6ryastsHCMR6XefUGb0y/qof+ITA=";
+    })
   ];
 
   postPatch = "";
