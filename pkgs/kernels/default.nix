@@ -33,8 +33,9 @@ buildPythonPackage {
     pytestCheckHook
   ];
 
-  # tests require cuda
-  doCheck = cudaSupport;
+  # TODO: test with cuda
+  # https://github.com/NixOS/nixpkgs/pull/256230
+  doCheck = cudaSupport && false;
 
   pythonImportsCheck = [
     "kernels"
