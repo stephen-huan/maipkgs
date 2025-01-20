@@ -26,6 +26,11 @@ buildPythonPackage rec {
 
   patches = [
     (fetchpatch2 {
+      name = "extend-deprecated.patch";
+      url = "https://github.com/jax-ml/jax-triton/pull/317.patch ";
+      hash = "sha256-syVOSun1y/LPMpgBJyLYhvLyY4IYKDcUGFYW0iZc3Oc=";
+    })
+    (fetchpatch2 {
       name = "triton_call-annotation.patch";
       url = "https://github.com/jax-ml/jax-triton/pull/323.diff";
       hash = "sha256-sWAIYLVD2Lpatnpxp07Dwn7Pm3vIq0+BcqyoT0ha9Fw=";
