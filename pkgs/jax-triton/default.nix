@@ -7,9 +7,9 @@
 , setuptools-scm
 , absl-py
 , jax
-, jaxlib
 , triton
 , pytestCheckHook
+, torch
 , cudaSupport ? config.cudaSupport
 }:
 
@@ -52,16 +52,17 @@ buildPythonPackage rec {
   dependencies = [
     absl-py
     jax
-    jaxlib
     triton
   ];
 
   nativeCheckInputs = [
     pytestCheckHook
+    torch
   ];
 
-  # tests require cuda
-  doCheck = cudaSupport;
+  # TODO: test with cuda
+  # https://github.com/NixOS/nixpkgs/pull/256230
+  doCheck = cudaSupport && false;
 
   pythonImportsCheck = [
     "jax_triton"
