@@ -24,6 +24,11 @@ buildPythonPackage rec {
     hash = "sha256-w34M7VXrjJ/8Y45ki62aXwcOsNhiFs65YoIEYTXEhH4=";
   };
 
+  patches = [
+    # https://github.com/wilson-labs/cola/pull/113
+    ./jax-deprecations.patch
+  ];
+
   build-system = [
     setuptools
     setuptools-scm
@@ -40,11 +45,6 @@ buildPythonPackage rec {
     pytestCheckHook
     jax
     torch
-  ];
-
-  disabledTests = [
-    # 'jaxlib.xla_extension.ArrayImpl' object has no attribute 'device'
-    "test_sparse"
   ];
 
   pythonImportsCheck = [

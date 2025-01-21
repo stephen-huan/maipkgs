@@ -1,0 +1,247 @@
+From d5d2e737614470b396e1e9601e971bb02e9e5d19 Mon Sep 17 00:00:00 2001
+From: Stephen Huan <stephen.huan@cgdct.moe>
+Date: Mon, 20 Jan 2025 16:25:14 -0500
+Subject: [PATCH 1/4] refactor(coda/utils/jax_tqdm): remove host_callback
+
+---
+ cola/utils/jax_tqdm.py | 64 ++++++++++++++++++++++--------------------
+ 1 file changed, 33 insertions(+), 31 deletions(-)
+
+diff --git a/cola/utils/jax_tqdm.py b/cola/utils/jax_tqdm.py
+index 9481a9d..26e399c 100644
+--- a/cola/utils/jax_tqdm.py
++++ b/cola/utils/jax_tqdm.py
+@@ -6,7 +6,8 @@
+ 
+ import jax
+ import numpy as np
+-from jax.experimental import host_callback
++from jax.debug import callback
++from jax.experimental import io_callback
+ from tqdm.auto import tqdm
+ 
+ 
+@@ -94,45 +95,46 @@ def build_tqdm(n: int, message: typing.Optional[str] = None) -> typing.Tuple[typ
+         print_rate = 1
+     remainder = n % print_rate
+ 
+-    def _define_tqdm(arg, transform):
++    def _define_tqdm(arg):
+         tqdm_bars[0] = tqdm(range(n))
+         tqdm_bars[0].set_description(message, refresh=False)
+ 
+-    def _update_tqdm(arg, transform):
+-        tqdm_bars[0].update(arg)
++    def _update_tqdm(arg):
++        tqdm_bars[0].update(float(arg))
+ 
+     def _update_progress_bar(iter_num):
+         "Updates tqdm from a JAX scan or loop"
+         _ = jax.jax.lax.cond(
+             iter_num == 0,
+-            lambda _: host_callback.id_tap(_define_tqdm, None, result=iter_num),
+-            lambda _: iter_num,
++            lambda _: callback(_define_tqdm, None),
++            lambda _: None,
+             operand=None,
+         )
+ 
+         _ = jax.lax.cond(
+             # update tqdm every multiple of `print_rate` except at the end
+             (iter_num % print_rate == 0) & (iter_num != n - remainder),
+-            lambda _: host_callback.id_tap(_update_tqdm, print_rate, result=iter_num),
+-            lambda _: iter_num,
++            lambda _: callback(_update_tqdm, print_rate),
++            lambda _: None,
+             operand=None,
+         )
+ 
+         _ = jax.lax.cond(
+             # update tqdm by `remainder`
+             iter_num == n - remainder,
+-            lambda _: host_callback.id_tap(_update_tqdm, remainder, result=iter_num),
+-            lambda _: iter_num,
++            lambda _: callback(_update_tqdm, remainder),
++            lambda _: None,
+             operand=None,
+         )
+ 
+-    def _close_tqdm(arg, transform):
++    def _close_tqdm(arg):
+         tqdm_bars[0].close()
++        return arg
+ 
+     def close_tqdm(result, iter_num):
+         return jax.lax.cond(
+             iter_num == n - 1,
+-            lambda _: host_callback.id_tap(_close_tqdm, None, result=result),
++            lambda _: io_callback(_close_tqdm, result),
+             lambda _: result,
+             operand=None,
+         )
+@@ -151,41 +153,41 @@ def new_while(cond_fun, body_fun, init_val):
+         info = {'progval': 0, 'pbar': None}
+         default_desc = f"Running {body_fun.__name__}"
+ 
+-        def construct_tqdm(arg, transform):
++        def construct_tqdm(arg):
+             _bar_format = "{l_bar}{bar}| {n:.3g}/{total_fmt} [{elapsed}<{remaining}, "
+             _bar_format += "{rate_fmt}{postfix}]"
+             info['pbar'] = tqdm(total=100, desc=f'{desc or default_desc}', bar_format=_bar_format)
+ 
+-        def update_tqdm(arg, transform):
++        def update_tqdm(arg):
+             error = errorfn(arg)
+             errstart = info.setdefault('errstart', error)
+             progress = max(100 * np.log(error / errstart) / np.log(tol / errstart) - info['progval'], 0)
+             progress = min(100 - info['progval'], progress)
+             if progress > 0:
+                 info['progval'] += progress
+-                info['pbar'].update(progress)
++                info['pbar'].update(float(progress))
+ 
+-        def close_tqdm(arg, transform):
+-            update_tqdm(arg, transform)
++        def close_tqdm(arg):
++            update_tqdm(arg)
+             info['pbar'].close()
++            return False
+ 
+         def newbody(ival):
+             i, val = ival
+             jax.lax.cond(
+                 i % every == 0,
+-                lambda _: host_callback.id_tap(update_tqdm, val, result=i),
+-                lambda _: i,
++                lambda _: callback(update_tqdm, val),
++                lambda _: None,
+                 operand=None,
+             )
+             return (i + 1, body_fun(val))
+ 
+         def newcond(ival):
+             i, val = ival
+-            out = jax.lax.cond(cond_fun(val), lambda _: True,
+-                               lambda _: host_callback.id_tap(close_tqdm, val, result=False), operand=None)
++            out = jax.lax.cond(cond_fun(val), lambda _: True, lambda _: io_callback(close_tqdm, val), operand=None)
+             return out
+ 
+-        host_callback.id_tap(construct_tqdm, None)
++        callback(construct_tqdm)
+         _, val = jax.lax.while_loop(newcond, newbody, (0, init_val))
+         return val
+ 
+@@ -224,23 +226,23 @@ def construct_info(*_):
+                 bar_format += "{rate_fmt}{postfix}]"
+                 info['pbar'] = tqdm(total=100, desc=f'{desc or default_desc}', bar_format=bar_format)
+ 
+-        def update_info(ival, _):
++        def update_info(ival):
+             i, arg = ival
+-            error = errorfn(arg)
++            error = float(errorfn(arg))
+             info['errors'].append(error)
+             if pbar:
+                 errstart = info.setdefault('errstart', error)
+                 howclose = np.log(error / errstart) / np.log(tol / errstart)
+                 if max_iters is not None:
+                     howclose = max((i + 1) / max_iters, howclose)
+-                progress = min(100 - info['progval'], max(100 * howclose - info['progval'], 0))
++                progress = float(min(100 - info['progval'], max(100 * howclose - info['progval'], 0)))
+                 if progress > 0:
+                     info['progval'] += progress
+                     info['pbar'].update(progress)
+ 
+-        def close_info(arg, transform):
++        def close_info(arg):
+             i, val = arg
+-            update_info(arg, transform)
++            update_info(arg)
+             info['iteration_time'] = (time.time() - info['iteration_time']) / (i + 1)
+             if pbar:
+                 info['pbar'].close()
+@@ -254,8 +256,8 @@ def newbody(ival):
+             i, val = ival
+             jax.lax.cond(
+                 i % every == 0,
+-                lambda _: host_callback.id_tap(update_info, ival, result=i),
+-                lambda _: i,
++                lambda _: callback(update_info, ival),
++                lambda _: None,
+                 operand=None,
+             )
+             return (i + 1, body_fun(val))
+@@ -269,9 +271,9 @@ def newcond(ival):
+                 operand=None)
+             return out
+ 
+-        host_callback.id_tap(construct_info, None)
++        callback(construct_info, None)
+         k, val = jax.lax.while_loop(newcond, newbody, (0, init_val))
+-        host_callback.id_tap(close_info, (k, val))
++        callback(close_info, (k, val))
+         return val
+ 
+     return new_while, info
+
+From 935bdd32de828f5f8efc0bb1b5bafccf456ee915 Mon Sep 17 00:00:00 2001
+From: Stephen Huan <stephen.huan@cgdct.moe>
+Date: Mon, 20 Jan 2025 19:09:44 -0500
+Subject: [PATCH 2/4] refactor(cola/linalg): explicitly batch solve
+
+---
+ cola/linalg/inverse/gmres.py | 2 +-
+ cola/linalg/unary/unary.py   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/cola/linalg/inverse/gmres.py b/cola/linalg/inverse/gmres.py
+index 3e5e323..0b80dec 100644
+--- a/cola/linalg/inverse/gmres.py
++++ b/cola/linalg/inverse/gmres.py
+@@ -115,7 +115,7 @@ def gmres_fwd(A, rhs, x0, max_iters, tol, P, use_householder, use_triangular, pb
+         zero_thresh = 10 * tol * overall_max[:, None]
+         padding = xnp.where(largest_vals < zero_thresh, xnp.ones_like(largest_vals), xnp.zeros_like(largest_vals))
+         added_diag = xnp.vmap(xnp.diag)(padding)
+-        y = xnp.solve(HT @ H + added_diag, HT[..., 0]) * beta[:, None]
++        y = xnp.solve(HT @ H + added_diag, HT[..., 0, None]).squeeze(-1) * beta[:, None]
+         zeros = xnp.zeros_like(y)
+         y = xnp.where(largest_vals < zero_thresh, zeros, y)
+         pred = xnp.permute(Q @ y[..., None], axes=[1, 0, 2])[:, :, 0]
+diff --git a/cola/linalg/unary/unary.py b/cola/linalg/unary/unary.py
+index 9b83d90..fce17ff 100644
+--- a/cola/linalg/unary/unary.py
++++ b/cola/linalg/unary/unary.py
+@@ -81,7 +81,7 @@ def _matmat(self, V):  # (n,bs)
+         norms = self.xnp.norm(V, axis=0)
+ 
+         e0 = self.xnp.canonical(0, (P.shape[1], V.shape[-1]), dtype=P.dtype, device=self.device)
+-        Pinv0 = self.xnp.solve(P, e0.T)  # (bs, m, m) vs (bs, m)
++        Pinv0 = self.xnp.solve(P, e0.T[..., None]).squeeze(-1)  # (bs, m, m) vs (bs, m)
+         out = Pinv0 * norms[:, None]  # (bs, m)
+         Q = self.xnp.cast(Q, dtype=P.dtype)  # (bs, n, m)
+         # (bs,n,m) @ (bs,m,m) @ (bs, m) -> (bs, n)
+
+From 4780cbb3dc6ad44d460319f92f0f44a1d092cc9e Mon Sep 17 00:00:00 2001
+From: Stephen Huan <stephen.huan@cgdct.moe>
+Date: Mon, 20 Jan 2025 20:33:39 -0500
+Subject: [PATCH 3/4] test(tests/test_linalg): decrease rtol
+
+---
+ tests/test_linalg.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/test_linalg.py b/tests/test_linalg.py
+index cc5818c..7799ce1 100644
+--- a/tests/test_linalg.py
++++ b/tests/test_linalg.py
+@@ -32,7 +32,7 @@ def test_power_iteration(backend):
+     A = xnp.diag(xnp.array([10., 9.75, 3., 0.1], dtype=dtype, device=None))
+     B = lazify(A)
+     soln = xnp.array(10., dtype=dtype, device=None)
+-    tol, max_iter = 1e-5, 500
++    tol, max_iter = 1e-6, 500
+     _, approx, _ = power_iteration(B, tol=tol, max_iter=max_iter, momentum=0.)
+     rel_error = relative_error(soln, approx)
+     assert rel_error < tol * 100
+
+ 
