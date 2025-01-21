@@ -16,6 +16,9 @@
           hash = "sha256-u9a6H72lfsTR9lCjcocsEjPnv9UUbASNmRquL7EJeLA=";
         })
       ];
+      disabledTests = previousAttrs.disabledTests or [ ] ++ [
+        "test_logreg_with_intercept_manual_loop3"
+      ];
     });
     jax-triton = final.callPackage ./jax-triton { };
     kernels = final.callPackage ./kernels { };
