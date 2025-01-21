@@ -48,6 +48,9 @@ buildPythonPackage rec {
       --replace \
         'jaxopt==0.8.2' \
         'jaxopt>=0.8.2' \
+      --replace \
+        'numpy<2.0.0' \
+        'numpy>=2.0.0' \
   '';
 
   build-system = [
@@ -79,12 +82,6 @@ buildPythonPackage rec {
   ];
 
   pytestFlagsArray = [ "." "-v" "-n auto" ];
-
-  disabledTests = [
-    # 'jaxlib.xla_extension.ArrayImpl' object has no attribute 'device'
-    "test_identity"
-    "test_variational_gaussians"
-  ];
 
   meta = with lib; {
     description = "Gaussian processes in JAX";
