@@ -31,27 +31,13 @@ buildPythonPackage rec {
     sha256 = "sha256-SslNnfKQlyXsWlEcqg20gdBR+J8XytJz4rgW/pVmOlI=";
   };
 
-  postPatch = ''
-    substituteInPlace pyproject.toml \
-      --replace \
-        'jax<0.4.28' \
-        'jax>=0.4.28' \
-      --replace \
-        'jaxlib<0.4.28' \
-        'jaxlib>=0.4.28' \
-      --replace \
-        'tensorflow-probability>=0.24.0' \
-        'tensorflow-probability>=0.21.0' \
-      --replace \
-        'cola-ml==0.0.5' \
-        'cola-ml>=0.0.5' \
-      --replace \
-        'jaxopt==0.8.2' \
-        'jaxopt>=0.8.2' \
-      --replace \
-        'numpy<2.0.0' \
-        'numpy>=2.0.0' \
-  '';
+  pythonRelaxDeps = [
+    "jax"
+    "jaxlib"
+    "cola-ml"
+    "jaxopt"
+    "numpy"
+  ];
 
   build-system = [
     hatchling
