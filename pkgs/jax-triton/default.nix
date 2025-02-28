@@ -42,13 +42,6 @@ buildPythonPackage rec {
     })
   ];
 
-  postPatch = ''
-    substituteInPlace pyproject.toml \
-      --replace \
-        'jax>=0.4.34' \
-        'jax>=0.4.28' \
-  '';
-
   build-system = [
     setuptools
     setuptools-scm
