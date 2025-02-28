@@ -1,7 +1,7 @@
 { pkgs }:
 
 let
-  inherit (pkgs.config) cudaSupport;
+  inherit (pkgs.config) cudaSupport rocmSupport;
   cudaLibPath = pkgs.lib.makeLibraryPath (
     with pkgs.cudaPackages; [
       (lib.getLib libcublas) # libcublas.so
@@ -16,6 +16,7 @@ let
       (lib.getLib pkgs.addDriverRunpath.driverLink) # libcuda.so
     ]
   );
+  gpuSupport = cudaSupport || rocmSupport;
 in
 {
   bbfmm3d = pkgs.callPackage ./bbfmm3d { };
@@ -27,7 +28,7 @@ in
     gpjax = final.callPackage ./gpjax { };
     # has a tendancy to oom, even with a small number of cores
     jax =
-      if cudaSupport
+      if gpuSupport
       then prev.jax.overridePythonAttrs { doCheck = false; }
       else prev.jax;
     # https://github.com/NixOS/nixpkgs/pull/375186
@@ -65,12 +66,12 @@ in
     # use torch-bin to avoid expensive build of magma etc. on cuda
     # and torch-no-triton to avoid recompiling when triton changes
     torch =
-      if cudaSupport
+      if gpuSupport
       # default triton is triton-bin, causing a conflict
       then final.torch-bin.override { inherit (final) triton; }
       else prev.torch.override { tritonSupport = false; };
-    # TODO: cudaSupport for triton-cpu
-    triton = if cudaSupport then prev.triton else final.triton-cpu;
+    # TODO: gpuSupport for triton-cpu
+    triton = if gpuSupport then prev.triton else final.triton-cpu;
     triton-cpu = final.callPackage ./triton-cpu { inherit (prev) triton; };
   });
 }
