@@ -9,14 +9,14 @@
 }:
 
 stdenv.mkDerivation (finalAttrs: {
-  version = "3.7";
+  version = "3.8";
   pname = "sleef";
 
   src = fetchFromGitHub {
     owner = "shibatch";
     repo = "sleef";
     tag = finalAttrs.version;
-    hash = "sha256-bzk80BRpTKYrhKKNtF/la1cO04Yn0zQ5DrwpkxULPrk=";
+    hash = "sha256-bjT+F7/nyiB4f0T06/flbpIWFZbUxjf1TjWMe3112Ig=";
   };
 
   outputs = [ "out" "dev" ];
