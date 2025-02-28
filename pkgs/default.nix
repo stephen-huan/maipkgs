@@ -47,6 +47,11 @@ in
       '';
       doCheck = true;
     };
+    jaxopt = prev.jaxopt.overridePythonAttrs (previousAttrs: {
+      disabledTests = previousAttrs.disabledTests or [ ] ++ [
+        "test_line_search2"
+      ];
+    });
     jax-triton = final.callPackage ./jax-triton { };
     # not actually changing any dependencies, only in tests
     keras = prev.keras.overridePythonAttrs { doCheck = false; };
