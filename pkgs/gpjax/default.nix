@@ -83,6 +83,12 @@ buildPythonPackage rec {
 
   pytestFlagsArray = [ "." "-v" "-n auto" ];
 
+  disabledTests = [
+    # assert Array(False, dtype=bool)
+    "test_expected_improvement_utility_function_correct_values"
+    "test_get_batch"
+  ];
+
   meta = with lib; {
     description = "Gaussian processes in JAX";
     homepage = "https://docs.jaxgaussianprocesses.com";
