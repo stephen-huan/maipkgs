@@ -25,6 +25,7 @@ in
   python3Packages = pkgs.python3Packages.overrideScope (final: prev: {
     cola-ml = final.callPackage ./cola-ml { };
     cola-plum-dispatch = final.callPackage ./cola-plum-dispatch { };
+    dppy = final.callPackage ./dppy { };
     gpjax = final.callPackage ./gpjax { };
     # has a tendancy to oom, even with a small number of cores
     jax =
