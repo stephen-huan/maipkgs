@@ -27,18 +27,18 @@ buildPythonPackage rec {
   patches = [
     (fetchpatch2 {
       name = "extend-deprecated.patch";
-      url = "https://github.com/jax-ml/jax-triton/pull/317.patch ";
+      url = "https://github.com/jax-ml/jax-triton/pull/317.patch";
       hash = "sha256-syVOSun1y/LPMpgBJyLYhvLyY4IYKDcUGFYW0iZc3Oc=";
     })
     (fetchpatch2 {
       name = "triton_call-annotation.patch";
-      url = "https://github.com/jax-ml/jax-triton/pull/323.diff";
+      url = "https://github.com/jax-ml/jax-triton/pull/323.patch";
       hash = "sha256-sWAIYLVD2Lpatnpxp07Dwn7Pm3vIq0+BcqyoT0ha9Fw=";
     })
     (fetchpatch2 {
       name = "cpu-backend.patch";
-      url = "https://github.com/jax-ml/jax-triton/pull/322.diff";
-      hash = "sha256-gkJmu91LIbHD29+5EnaHOzSZnpW8JbGLFMbTQY9RtTA=";
+      url = "https://github.com/jax-ml/jax-triton/pull/322.patch";
+      hash = "sha256-OxEdXxe45KSuqTvIfVcV2+OBAYMY0cbCVc48GueDR5U=";
     })
   ];
 
