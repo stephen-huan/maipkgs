@@ -1,18 +1,22 @@
 { lib
 , fetchFromGitHub
-, fetchpatch2
 , triton
 , triton-llvm
 }:
 let
-  triton-llvm' = triton-llvm.overrideAttrs {
+  triton-llvm' = (triton-llvm.override {
+    llvmProjectsToBuild = [ "mlir" "llvm" "lld" ];
+  }
+  ).overrideAttrs {
     src = fetchFromGitHub {
       owner = "llvm";
       repo = "llvm-project";
-      rev = "86b69c31642e98f8357df62c09d118ad1da4e16a";
-      hash = "sha256-W/mQwaLGx6/rIBjdzUTIbWrvGjdh7m4s15f70fQ1/hE=";
+      rev = "a66376b0dc3b2ea8a84fda26faca287980986f78";
+      hash = "sha256-7xUPozRerxt38UeJxA8kYYxOQ4+WzDREndD2+K0BYkU=";
     };
     patches = [ ];
+    # nondeterministic hang
+    doCheck = false;
   };
   triton' = triton.override {
     llvm = triton-llvm';
@@ -24,19 +28,13 @@ triton'.overridePythonAttrs (previousAttrs: {
   src = fetchFromGitHub {
     owner = "triton-lang";
     repo = "triton-cpu";
-    rev = "dc8dfb6d28c4bc7cc83a7eb5defd1279ff093d4c";
-    hash = "sha256-fixlHv/WZ+hvAHIaS5R+pDFawtufvRI7fI3a1CG536M=";
+    rev = "3b6a8b70cb2184acec5aa4a383e0147959e1001b";
+    hash = "sha256-VTPikYn35jErnRWT6d/i5LI6aQsxkm6rqEgqPi80SJ4=";
     # for sleef
     fetchSubmodules = true;
   };
 
-  patches = [
-    (fetchpatch2 {
-      name = "cudaless.patch";
-      url = "https://github.com/triton-lang/triton/pull/5492.patch";
-      hash = "sha256-Ww33nSJRmEyX+bh6ryastsHCMR6XefUGb0y/qof+ITA=";
-    })
-  ];
+  patches = [ ];
 
   postPatch = "";
 
