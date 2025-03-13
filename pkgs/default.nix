@@ -74,5 +74,11 @@ in
     # TODO: gpuSupport for triton-cpu
     triton = if gpuSupport then prev.triton else final.triton-cpu;
     triton-cpu = final.callPackage ./triton-cpu { inherit (prev) triton; };
+    wandb = prev.wandb.overridePythonAttrs (previousAttrs: {
+      # https://github.com/NixOS/nixpkgs/pull/389616
+      dependencies = previousAttrs.dependencies or [ ] ++ [ final.pydantic ];
+      # not actually changing any dependencies, only in tests
+      doCheck = false;
+    });
   });
 }
