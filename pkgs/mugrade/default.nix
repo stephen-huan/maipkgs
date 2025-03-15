@@ -1,6 +1,7 @@
 { lib
 , fetchFromGitHub
 , buildPythonPackage
+, pythonOlder
 , setuptools
 , numpy
 , requests
@@ -19,9 +20,7 @@ buildPythonPackage {
     hash = "sha256-POD2YQAwqSM3NkkSDTHjOnIjAktGf0TrxFEuM20bz6E=";
   };
 
-  patches = [
-    ./argparse.patch
-  ];
+  pythonRemoveDeps = lib.optional (!pythonOlder "3.2") "argparse";
 
   build-system = [
     setuptools
