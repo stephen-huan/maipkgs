@@ -7,8 +7,7 @@
 let
   triton-llvm' = (triton-llvm.override {
     llvmProjectsToBuild = [ "mlir" "llvm" "lld" ];
-  }
-  ).overrideAttrs {
+  }).overrideAttrs (previousAttrs: {
     src = fetchFromGitHub {
       owner = "llvm";
       repo = "llvm-project";
@@ -22,6 +21,11 @@ let
         url = "https://github.com/llvm/llvm-project/pull/132861.patch";
         hash = "sha256-u3xjuiyQi8M82n/0/t6/Baeg+KdQoSnxRkHrPxY4DTk=";
       })
+    ];
+    cmakeFlags = previousAttrs.cmakeFlags or [ ] ++ [
+      # takes a lot of memory
+      "-DLLVM_PARALLEL_LINK_JOBS=4"
+      "-DLLVM_PARALLEL_TABLEGEN_JOBS=4"
     ];
   });
   triton' = triton.override {
