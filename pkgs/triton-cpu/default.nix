@@ -1,5 +1,6 @@
 { lib
 , fetchFromGitHub
+, fetchpatch2
 , triton
 , triton-llvm
 }:
@@ -14,10 +15,15 @@ let
       rev = "a66376b0dc3b2ea8a84fda26faca287980986f78";
       hash = "sha256-7xUPozRerxt38UeJxA8kYYxOQ4+WzDREndD2+K0BYkU=";
     };
-    patches = [ ];
-    # nondeterministic hang
-    doCheck = false;
-  };
+    patches = [
+      # https://github.com/NixOS/nixpkgs/pull/392651
+      (fetchpatch2 {
+        name = "llvm-exegesis-timeout.patch";
+        url = "https://github.com/llvm/llvm-project/pull/132861.patch";
+        hash = "sha256-u3xjuiyQi8M82n/0/t6/Baeg+KdQoSnxRkHrPxY4DTk=";
+      })
+    ];
+  });
   triton' = triton.override {
     llvm = triton-llvm';
   };
