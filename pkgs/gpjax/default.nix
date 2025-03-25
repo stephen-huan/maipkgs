@@ -1,6 +1,7 @@
 { lib
 , fetchFromGitHub
 , buildPythonPackage
+, fetchpatch2
 , hatchling
 , jax
 , optax
@@ -20,7 +21,7 @@
 
 buildPythonPackage rec {
   pname = "gpjax";
-  version = "0.9.3";
+  version = "0.9.4";
   pyproject = true;
 
   # PyPi source doesn't contain tests
@@ -28,7 +29,7 @@ buildPythonPackage rec {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
     tag = "v${version}";
-    sha256 = "sha256-SslNnfKQlyXsWlEcqg20gdBR+J8XytJz4rgW/pVmOlI=";
+    sha256 = "sha256-X2pFFaN+QuNMcKNm1fpdN8YA+Fnj9P+bU5RWeldZOy4=";
   };
 
   pythonRelaxDeps = [
@@ -36,7 +37,16 @@ buildPythonPackage rec {
     "jaxlib"
     "cola-ml"
     "jaxopt"
+    "flax"
     "numpy"
+  ];
+
+  patches = [
+    (fetchpatch2 {
+      name = "jaxtyping-flax.patch";
+      url = "https://github.com/JaxGaussianProcesses/GPJax/pull/498.patch";
+      hash = "sha256-ZXeJEIb/MbV3AIqAjIy1WiPlfFmBHQCw1T0r4lWRa7c=";
+    })
   ];
 
   build-system = [
@@ -68,12 +78,6 @@ buildPythonPackage rec {
   ];
 
   pytestFlagsArray = [ "." "-v" "-n auto" ];
-
-  disabledTests = [
-    # assert Array(False, dtype=bool)
-    "test_expected_improvement_utility_function_correct_values"
-    "test_get_batch"
-  ];
 
   meta = with lib; {
     description = "Gaussian processes in JAX";
