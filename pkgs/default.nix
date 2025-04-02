@@ -32,9 +32,13 @@ in
     # and torch-no-triton to avoid recompiling when triton changes
     torch =
       if gpuSupport
-      # default triton is triton-bin, causing a conflict
-      then final.torch-bin.override { inherit (final) triton; }
+      then final.torch-bin
       else prev.torch.override { tritonSupport = false; };
+    torch-bin =
+      if gpuSupport
+      # default triton is triton-bin, causing a conflict
+      then prev.torch-bin.override { inherit (final) triton; }
+      else prev.torch-bin;
     # TODO: gpuSupport for triton-cpu
     triton = if gpuSupport then prev.triton else final.triton-cpu;
     triton-cpu = final.callPackage ./triton-cpu { inherit (prev) triton; };
