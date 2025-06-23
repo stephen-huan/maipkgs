@@ -14,20 +14,15 @@
 
 buildPythonPackage rec {
   pname = "cola-ml";
-  version = "0.0.6";
+  version = "0.0.7";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "wilson-labs";
     repo = "cola";
     tag = "v${version}";
-    hash = "sha256-w34M7VXrjJ/8Y45ki62aXwcOsNhiFs65YoIEYTXEhH4=";
+    hash = "sha256-n7iaKycJicnqYXQPUy5pd4mbo13t8+01eITj/mQe+P8=";
   };
-
-  patches = [
-    # https://github.com/wilson-labs/cola/pull/113
-    ./jax-deprecations.patch
-  ];
 
   build-system = [
     setuptools
