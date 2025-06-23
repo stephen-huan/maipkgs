@@ -1,7 +1,6 @@
 { lib
 , fetchFromGitHub
 , buildPythonPackage
-, fetchpatch2
 , hatchling
 , jax
 , optax
@@ -20,7 +19,7 @@
 
 buildPythonPackage rec {
   pname = "gpjax";
-  version = "0.11.1";
+  version = "0.11.2";
   pyproject = true;
 
   # PyPi source doesn't contain tests
@@ -28,16 +27,8 @@ buildPythonPackage rec {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
     tag = "v${version}";
-    sha256 = "sha256-4gFaWTF3fU9g4KCQQDlOd50WaH3REQ3oie20Qu8laVQ=";
+    sha256 = "sha256-AMbzS1pckerejvv82+uaW0cjuGGbMjCZQ+VtFHLL9jI=";
   };
-
-  patches = [
-    (fetchpatch2 {
-      name = "jax-deprecations.patch";
-      url = "https://github.com/JaxGaussianProcesses/GPJax/pull/521.patch";
-      hash = "sha256-KRA6KrHAKwNgJ+K+no4t2V6K1CAJq3KANGfgSy1nCyg=";
-    })
-  ];
 
   build-system = [
     hatchling
