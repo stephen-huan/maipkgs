@@ -15,21 +15,16 @@
 
 buildPythonPackage rec {
   pname = "jax-triton";
-  version = "0.2.0";
+  version = "0.3.0";
   pyproject = true;
 
   src = fetchPypi {
     pname = "jax_triton";
     inherit version;
-    hash = "sha256-7VZKX/ueQEVX3I0pbn6zDlAdpaTXsDQIrNCDfBxhjCE=";
+    hash = "sha256-2nuc2PeE3lCybRBKP0xBfAr83YlPmEQryBWoIpAAM+Y=";
   };
 
   patches = [
-    (fetchpatch2 {
-      name = "extend-deprecated.patch";
-      url = "https://github.com/jax-ml/jax-triton/pull/317.patch";
-      hash = "sha256-syVOSun1y/LPMpgBJyLYhvLyY4IYKDcUGFYW0iZc3Oc=";
-    })
     (fetchpatch2 {
       name = "triton_call-annotation.patch";
       url = "https://github.com/jax-ml/jax-triton/pull/323.patch";
@@ -38,7 +33,7 @@ buildPythonPackage rec {
     (fetchpatch2 {
       name = "cpu-backend.patch";
       url = "https://github.com/jax-ml/jax-triton/pull/322.patch";
-      hash = "sha256-OxEdXxe45KSuqTvIfVcV2+OBAYMY0cbCVc48GueDR5U=";
+      hash = "sha256-RIDaVEhhiKboibmoEKSMtPz8UfVEY3OyZXa4e8y5Xqs=";
     })
   ];
 
