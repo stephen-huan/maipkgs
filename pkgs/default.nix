@@ -9,6 +9,7 @@ in
   hlibpro = pkgs.callPackage ./hlibpro { };
   sleef = pkgs.callPackage ./sleef { };
   python3Packages = pkgs.python312Packages.overrideScope (final: prev: {
+    blosc2 = prev.blosc2.overridePythonAttrs { doCheck = false; };
     cola-ml = final.callPackage ./cola-ml { };
     cola-plum-dispatch = final.callPackage ./cola-plum-dispatch { };
     dppy = final.callPackage ./dppy { };
@@ -30,6 +31,20 @@ in
       onnxruntime = pkgs.onnxruntime.override { cudaSupport = false; };
     };
     pbbfmm3d = final.callPackage ./pbbfmm3d { };
+    tables = prev.tables.overridePythonAttrs { doCheck = false; };
+    tensorflow-datasets =
+      if gpuSupport
+      then
+        # https://github.com/NixOS/nixpkgs/pull/419210
+        prev.tensorflow-datasets.overridePythonAttrs
+          (previousAttrs: {
+            build-system = [ final.setuptools ];
+            dependencies = previousAttrs.dependencies or [ ] ++ [
+              final.pyarrow
+            ];
+            doCheck = false;
+          })
+      else prev.tensorflow-datasets;
     # use torch-bin to avoid expensive build of magma etc. on cuda
     # and torch-no-triton to avoid recompiling when triton changes
     torch =
