@@ -5,14 +5,12 @@
 , triton-llvm
 }:
 let
-  triton-llvm' = (triton-llvm.override {
-    llvmProjectsToBuild = [ "mlir" "llvm" "lld" ];
-  }).overrideAttrs (previousAttrs: {
+  triton-llvm' = triton-llvm.overrideAttrs (previousAttrs: {
     src = fetchFromGitHub {
       owner = "llvm";
       repo = "llvm-project";
-      rev = "a66376b0dc3b2ea8a84fda26faca287980986f78";
-      hash = "sha256-7xUPozRerxt38UeJxA8kYYxOQ4+WzDREndD2+K0BYkU=";
+      rev = "adba14acea99cc6a17d837763a3248c9d4a2fadf";
+      hash = "sha256-HWSgjTiP0mdrhbWfMJQ5B5y8+S+Brnm0J0CUPNsX9zM=";
     };
     patches = [
       # https://github.com/NixOS/nixpkgs/pull/392651
@@ -33,20 +31,18 @@ let
   };
 in
 triton'.overridePythonAttrs (previousAttrs: {
-  version = "3.2.0-unstable-2025-01-13";
+  version = "3.3.0-unstable-2025-06-03";
 
   src = fetchFromGitHub {
     owner = "triton-lang";
     repo = "triton-cpu";
-    rev = "3b6a8b70cb2184acec5aa4a383e0147959e1001b";
-    hash = "sha256-VTPikYn35jErnRWT6d/i5LI6aQsxkm6rqEgqPi80SJ4=";
+    rev = "e60f448f8f197073b75d6d3e77347414a5db3ee7";
+    hash = "sha256-y+CehczipnRTf5EylpEiLDGcim9M3hkjXHVESOsJ/oI=";
     # for sleef
     fetchSubmodules = true;
   };
 
   patches = [ ];
-
-  postPatch = "";
 
   env = previousAttrs.env or { } // {
     LLVM_INCLUDE_DIRS = "${lib.getDev triton-llvm'}";
