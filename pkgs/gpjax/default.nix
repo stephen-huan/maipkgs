@@ -5,12 +5,11 @@
 , hatchling
 , jax
 , optax
+, numpyro
 , jaxtyping
 , tqdm
-, tensorflow-probability
 , beartype
 , cola-ml
-, jaxopt
 , flax
 , numpy
 , pytestCheckHook
@@ -21,7 +20,7 @@
 
 buildPythonPackage rec {
   pname = "gpjax";
-  version = "0.9.4";
+  version = "0.11.1";
   pyproject = true;
 
   # PyPi source doesn't contain tests
@@ -29,23 +28,14 @@ buildPythonPackage rec {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
     tag = "v${version}";
-    sha256 = "sha256-X2pFFaN+QuNMcKNm1fpdN8YA+Fnj9P+bU5RWeldZOy4=";
+    sha256 = "sha256-4gFaWTF3fU9g4KCQQDlOd50WaH3REQ3oie20Qu8laVQ=";
   };
-
-  pythonRelaxDeps = [
-    "jax"
-    "jaxlib"
-    "cola-ml"
-    "jaxopt"
-    "flax"
-    "numpy"
-  ];
 
   patches = [
     (fetchpatch2 {
-      name = "jaxtyping-flax.patch";
-      url = "https://github.com/JaxGaussianProcesses/GPJax/pull/498.patch";
-      hash = "sha256-ZXeJEIb/MbV3AIqAjIy1WiPlfFmBHQCw1T0r4lWRa7c=";
+      name = "jax-deprecations.patch";
+      url = "https://github.com/JaxGaussianProcesses/GPJax/pull/521.patch";
+      hash = "sha256-KRA6KrHAKwNgJ+K+no4t2V6K1CAJq3KANGfgSy1nCyg=";
     })
   ];
 
@@ -56,12 +46,11 @@ buildPythonPackage rec {
   dependencies = [
     jax
     optax
+    numpyro
     jaxtyping
     tqdm
-    tensorflow-probability
     beartype
     cola-ml
-    jaxopt
     flax
     numpy
   ];
@@ -82,7 +71,7 @@ buildPythonPackage rec {
   meta = with lib; {
     description = "Gaussian processes in JAX";
     homepage = "https://docs.jaxgaussianprocesses.com";
-    license = licenses.asl20;
+    license = licenses.mit;
     maintainers = with maintainers; [ stephen-huan ];
   };
 }
