@@ -23,6 +23,8 @@ in
     keras = prev.keras.overridePythonAttrs { doCheck = false; };
     kernels = final.callPackage ./kernels { };
     mugrade = final.callPackage ./mugrade { };
+    # not actually changing any dependencies, only in tests
+    numpyro = prev.numpyro.overridePythonAttrs { doCheck = false; };
     # long build, only in tests
     onnxruntime = prev.onnxruntime.override {
       onnxruntime = pkgs.onnxruntime.override { cudaSupport = false; };
