@@ -8,7 +8,7 @@ in
   bbfmm3d = pkgs.callPackage ./bbfmm3d { };
   hlibpro = pkgs.callPackage ./hlibpro { };
   sleef = pkgs.callPackage ./sleef { };
-  python3Packages = pkgs.python3Packages.overrideScope (final: prev: {
+  python3Packages = pkgs.python312Packages.overrideScope (final: prev: {
     cola-ml = final.callPackage ./cola-ml { };
     cola-plum-dispatch = final.callPackage ./cola-plum-dispatch { };
     dppy = final.callPackage ./dppy { };
