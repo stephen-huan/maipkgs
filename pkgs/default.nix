@@ -4,10 +4,10 @@ let
   inherit (pkgs.config) cudaSupport rocmSupport;
   gpuSupport = cudaSupport || rocmSupport;
 in
-{
+rec {
   bbfmm3d = pkgs.callPackage ./bbfmm3d { };
   hlibpro = pkgs.callPackage ./hlibpro { };
-  sleef = pkgs.callPackage ./sleef { };
+  sleef = pkgs.callPackage ./sleef { inherit tlfloat; };
   tlfloat = pkgs.callPackage ./tlfloat { };
   python3Packages = pkgs.python312Packages.overrideScope (final: prev: {
     blosc2 = prev.blosc2.overridePythonAttrs { doCheck = false; };
