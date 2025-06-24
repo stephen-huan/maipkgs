@@ -8,6 +8,7 @@ in
   bbfmm3d = pkgs.callPackage ./bbfmm3d { };
   hlibpro = pkgs.callPackage ./hlibpro { };
   sleef = pkgs.callPackage ./sleef { };
+  tlfloat = pkgs.callPackage ./tlfloat { };
   python3Packages = pkgs.python312Packages.overrideScope (final: prev: {
     blosc2 = prev.blosc2.overridePythonAttrs { doCheck = false; };
     cola-ml = final.callPackage ./cola-ml { };

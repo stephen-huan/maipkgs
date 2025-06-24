@@ -31,7 +31,8 @@
           inherit (maipkgs)
             bbfmm3d
             hlibpro
-            sleef;
+            sleef
+            tlfloat;
           inherit (maipkgs.python3Packages)
             cola-ml
             cola-plum-dispatch

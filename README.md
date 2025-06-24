@@ -31,5 +31,6 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
 - (Triton) [kernels](https://github.com/triton-lang/kernels)
 - [mugrade](https://github.com/dlsyscourse/mugrade), the grading
   system for [10-714 Deep Learning Systems](https://dlsyscourse.org/)
-- [SLEEF](https://sleef.org/)
+- [SLEEF](https://sleef.org/) and
+  [TLFloat](https://shibatch.github.io/tlfloat-doxygen/)
 - [triton-cpu](https://github.com/triton-lang/triton-cpu)
