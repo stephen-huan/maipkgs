@@ -8,7 +8,6 @@
 , jaxtyping
 , tqdm
 , beartype
-, cola-ml
 , flax
 , numpy
 , pytestCheckHook
@@ -19,7 +18,7 @@
 
 buildPythonPackage rec {
   pname = "gpjax";
-  version = "0.11.2";
+  version = "0.12.2";
   pyproject = true;
 
   # PyPi source doesn't contain tests
@@ -27,7 +26,7 @@ buildPythonPackage rec {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
     tag = "v${version}";
-    sha256 = "sha256-AMbzS1pckerejvv82+uaW0cjuGGbMjCZQ+VtFHLL9jI=";
+    sha256 = "sha256-wObGCHfwW28K/4VEthSwg0b0/xow9c/FOHh2ThdFens=";
   };
 
   build-system = [
@@ -41,7 +40,6 @@ buildPythonPackage rec {
     jaxtyping
     tqdm
     beartype
-    cola-ml
     flax
     numpy
   ];
