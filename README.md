@@ -20,11 +20,9 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
 - [BBFMM3D](https://github.com/ruoxi-wang/BBFMM3D) and
   (my [fork](https://github.com/stephen-huan/PBBFMM3D)
   of) [PBBFMM3D](https://github.com/ruoxi-wang/PBBFMM3D)
+- [CoLA](https://cola.readthedocs.io/en/latest/)
 - [DPPy](https://dppy.readthedocs.io/)
-- [GPJax](https://docs.jaxgaussianprocesses.com/) and its dependencies
-  - `cola-ml`
-  - `cola-plum-dispatch`
-  - `gpjax`
+- [GPJax](https://docs.jaxgaussianprocesses.com/)
 - [HLIBpro](https://www.hlibpro.com/)
 - [jax-triton](https://github.com/jax-ml/jax-triton) with
   [triton-cpu support](https://github.com/jax-ml/jax-triton/pull/322)
