@@ -32,6 +32,17 @@ rec {
       onnxruntime = pkgs.onnxruntime.override { cudaSupport = false; };
     };
     pbbfmm3d = final.callPackage ./pbbfmm3d { };
+    safetensors =
+      if gpuSupport
+      then
+      # https://github.com/NixOS/nixpkgs/pull/441390
+        prev.safetensors.overridePythonAttrs
+          (previousAttrs: {
+            nativeCheckInputs = previousAttrs.nativeCheckInputs or [ ] ++ [
+              final.fsspec
+            ];
+          })
+      else prev.safetensors;
     tables = prev.tables.overridePythonAttrs { doCheck = false; };
     tensorflow-datasets =
       if gpuSupport
