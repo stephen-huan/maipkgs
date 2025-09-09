@@ -36,13 +36,8 @@ rec {
     tensorflow-datasets =
       if gpuSupport
       then
-        # https://github.com/NixOS/nixpkgs/pull/419210
         prev.tensorflow-datasets.overridePythonAttrs
           (previousAttrs: {
-            build-system = [ final.setuptools ];
-            dependencies = previousAttrs.dependencies or [ ] ++ [
-              final.pyarrow
-            ];
             doCheck = false;
           })
       else prev.tensorflow-datasets;
