@@ -63,36 +63,7 @@ rec {
       else prev.torchvision;
     # TODO: gpuSupport for triton-cpu
     triton' = final.callPackage ./triton { };
-    triton =
-      let
-        triton'' = final.triton'.override {
-          llvm = (pkgs.triton-llvm.override {
-            llvmProjectsToBuild = [ "mlir" "llvm" "lld" ];
-          }).overrideAttrs (previousAttrs: {
-            src = pkgs.fetchFromGitHub {
-              owner = "llvm";
-              repo = "llvm-project";
-              rev = "a66376b0dc3b2ea8a84fda26faca287980986f78";
-              hash = "sha256-7xUPozRerxt38UeJxA8kYYxOQ4+WzDREndD2+K0BYkU=";
-            };
-            patches = [
-              # https://github.com/NixOS/nixpkgs/pull/392651
-              (pkgs.fetchpatch2 {
-                name = "llvm-exegesis-timeout.patch";
-                url = "https://github.com/llvm/llvm-project/pull/132861.patch";
-                hash = "sha256-u3xjuiyQi8M82n/0/t6/Baeg+KdQoSnxRkHrPxY4DTk=";
-              })
-            ];
-            cmakeFlags = previousAttrs.cmakeFlags or [ ] ++ [
-              # takes a lot of memory
-              "-DLLVM_PARALLEL_LINK_JOBS=4"
-              "-DLLVM_PARALLEL_TABLEGEN_JOBS=4"
-            ];
-          });
-        };
-      in
-      if gpuSupport then triton''
-      else final.triton-cpu;
+    triton = if gpuSupport then prev.triton else final.triton-cpu;
     triton-cpu = final.callPackage ./triton-cpu { triton = final.triton'; };
     wandb = prev.wandb.overridePythonAttrs (previousAttrs: {
       # https://github.com/NixOS/nixpkgs/pull/389616
