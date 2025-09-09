@@ -15,7 +15,7 @@
 
 buildPythonPackage rec {
   pname = "jax-triton";
-  version = "0.3.0-unstable-2025-09-03";
+  version = "0.3.0";
   pyproject = true;
 
   src = fetchPypi {
@@ -33,7 +33,7 @@ buildPythonPackage rec {
     (fetchpatch2 {
       name = "cpu-backend.patch";
       url = "https://github.com/jax-ml/jax-triton/pull/322.patch";
-      hash = "sha256-T8cr3PhrBIU4NxIINTqiHbklOZQIbfIVmh6VyzUPgJk=";
+      hash = "sha256-ZVCdgO93zzGZJI7PzUnfd4MAicBWHf8nZsQFiXR1zSQ=";
     })
   ];
 
