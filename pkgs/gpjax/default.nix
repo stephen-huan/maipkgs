@@ -1,6 +1,7 @@
 { lib
 , fetchFromGitHub
 , buildPythonPackage
+, fetchpatch2
 , hatchling
 , jax
 , optax
@@ -28,6 +29,14 @@ buildPythonPackage rec {
     tag = "v${version}";
     sha256 = "sha256-wObGCHfwW28K/4VEthSwg0b0/xow9c/FOHh2ThdFens=";
   };
+
+  patches = [
+    (fetchpatch2 {
+      name = "flax-param.patch";
+      url = "https://github.com/JaxGaussianProcesses/GPJax/pull/554.patch";
+      hash = "sha256-aCYUr9pWjD4LLXHILJCPcOLxfTfbpV9OxVvYsP1iR1c=";
+    })
+  ];
 
   build-system = [
     hatchling
