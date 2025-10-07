@@ -32,3 +32,33 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
 - [SLEEF](https://sleef.org/) and
   [TLFloat](https://shibatch.github.io/tlfloat-doxygen/)
 - [triton-cpu](https://github.com/triton-lang/triton-cpu)
+
+### Binary cache
+
+In order to reduce build times for CUDA packages, the [Nix-community
+cache](https://nix-community.org/cache/) as well as the [Flox
+cache](https://flox.dev/blog/the-flox-catalog-now-contains-nvidia-cuda/) can
+be used in addition to the default [NixOS cache](https://cache.nixos.org/).
+An example NixOS configuration is provided below.
+
+```nix
+nix.settings = {
+  substituters = [
+    "https://nix-community.cachix.org?priority=41"
+    "https://cache.flox.dev?priority=42"
+  ];
+  trusted-public-keys = [
+    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
+  ];
+};
+```
+
+Alternatively, modify `/etc/nix/nix.conf` or `~/.config/nix/nix.conf` directly.
+
+```ini
+extra-substituters = https://nix-community.cachix.org?priority=41
+extra-trusted-public-keys = nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+extra-substituters = https://cache.flox.dev?priority=42
+extra-trusted-public-keys = flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs=
+```
