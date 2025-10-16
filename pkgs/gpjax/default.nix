@@ -1,7 +1,6 @@
 { lib
 , fetchFromGitHub
 , buildPythonPackage
-, fetchpatch2
 , hatchling
 , jax
 , optax
@@ -19,7 +18,7 @@
 
 buildPythonPackage rec {
   pname = "gpjax";
-  version = "0.12.2";
+  version = "0.13.0";
   pyproject = true;
 
   # PyPi source doesn't contain tests
@@ -27,16 +26,8 @@ buildPythonPackage rec {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
     tag = "v${version}";
-    hash = "sha256-wObGCHfwW28K/4VEthSwg0b0/xow9c/FOHh2ThdFens=";
+    hash = "sha256-Sd+miiPUeNsIH19hnWfeTpN1sQizjWL8F6iccJd8/1c=";
   };
-
-  patches = [
-    (fetchpatch2 {
-      name = "flax-param.patch";
-      url = "https://github.com/JaxGaussianProcesses/GPJax/pull/554.patch";
-      hash = "sha256-aCYUr9pWjD4LLXHILJCPcOLxfTfbpV9OxVvYsP1iR1c=";
-    })
-  ];
 
   build-system = [
     hatchling
