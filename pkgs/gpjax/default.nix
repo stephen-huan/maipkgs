@@ -27,7 +27,7 @@ buildPythonPackage rec {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
     tag = "v${version}";
-    sha256 = "sha256-wObGCHfwW28K/4VEthSwg0b0/xow9c/FOHh2ThdFens=";
+    hash = "sha256-wObGCHfwW28K/4VEthSwg0b0/xow9c/FOHh2ThdFens=";
   };
 
   patches = [
