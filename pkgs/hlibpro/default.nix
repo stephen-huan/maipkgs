@@ -8,12 +8,12 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "hlibpro";
-  version = "3.1.2";
+  version = "3.2";
 
   src = fetchzip {
     url = "https://www.hlibpro.com/archives/${finalAttrs.version}"
       + "/hlibpro-${finalAttrs.version}-${os}.tgz";
-    hash = "sha256-3+ZhN6AyR1P2ykIFwr4IOucdWSashkkZS0lVq1v0sMs=";
+    hash = "sha256-WjvIhLMNP0Svsrd+vAsanN9xMiLuG2yCKfTWvDsj6GA=";
   };
 
   outputs = [ "out" "dev" "bin" ];
