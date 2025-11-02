@@ -1,6 +1,16 @@
 { lib
 , stdenvNoCC
 , fetchzip
+, boost183
+, tbb_2022
+, blas
+, lapack
+, metis
+, zlib
+, fftw
+, hdf5_1_10
+, gsl
+, cgal
 }:
 
 let
@@ -15,6 +25,20 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       + "/hlibpro-${finalAttrs.version}-${os}.tgz";
     hash = "sha256-WjvIhLMNP0Svsrd+vAsanN9xMiLuG2yCKfTWvDsj6GA=";
   };
+
+  # `hpro-config --cflags --lflags`
+  propagatedBuildInputs = [
+    boost183
+    tbb_2022
+    blas
+    lapack
+    metis
+    zlib
+    fftw
+    hdf5_1_10
+    gsl
+    cgal
+  ];
 
   outputs = [ "out" "dev" "bin" ];
 
