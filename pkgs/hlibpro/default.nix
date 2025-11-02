@@ -1,12 +1,12 @@
 { lib
-, stdenv
+, stdenvNoCC
 , fetchzip
 }:
 
 let
   os = "Ubuntu24.04";
 in
-stdenv.mkDerivation (finalAttrs: {
+stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "hlibpro";
   version = "3.2";
 
