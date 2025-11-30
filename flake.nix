@@ -42,6 +42,7 @@
             kernels
             mugrade
             pbbfmm3d
+            sphinx-immaterial
             triton-cpu;
         };
 

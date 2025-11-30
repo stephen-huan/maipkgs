@@ -22,6 +22,7 @@ rec {
     mugrade = final.callPackage ./mugrade { };
     numpyro = prev.numpyro.overridePythonAttrs { doCheck = false; };
     pbbfmm3d = final.callPackage ./pbbfmm3d { };
+    sphinx-immaterial = final.callPackage ./sphinx-immaterial { };
     tables = prev.tables.overridePythonAttrs { doCheck = false; };
     tensorflow-datasets = prev.tensorflow-datasets.overridePythonAttrs {
       doCheck = false;
