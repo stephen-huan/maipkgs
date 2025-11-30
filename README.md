@@ -31,6 +31,9 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
   system for [10-714 Deep Learning Systems](https://dlsyscourse.org/)
 - [SLEEF](https://sleef.org/) and
   [TLFloat](https://shibatch.github.io/tlfloat-doxygen/)
+- [sphinx-immaterial](https://jbms.github.io/sphinx-immaterial/)
+  for the [cvxpy](https://github.com/cvxpy/cvxpy/pull/3021)
+  [website](https://www.cvxpy.org/)
 - [triton-cpu](https://github.com/triton-lang/triton-cpu)
 
 ### Binary cache
