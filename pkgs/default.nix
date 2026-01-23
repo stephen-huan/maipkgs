@@ -18,7 +18,6 @@ rec {
     jax-triton = final.callPackage ./jax-triton { };
     # not actually changing any dependencies, only in tests
     keras = prev.keras.overridePythonAttrs { doCheck = gpuSupport; };
-    kernels = final.callPackage ./kernels { };
     mugrade = final.callPackage ./mugrade { };
     numpyro = prev.numpyro.overridePythonAttrs { doCheck = false; };
     pbbfmm3d = final.callPackage ./pbbfmm3d { };
