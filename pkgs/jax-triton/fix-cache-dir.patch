@@ -1,0 +1,23 @@
+From a96159c2b6f151231f01d182a3d0d1db3a60bb0e Mon Sep 17 00:00:00 2001
+From: Stephen Huan <stephen.huan@cgdct.moe>
+Date: Tue, 9 Sep 2025 00:52:45 -0400
+Subject: [PATCH] Handle TRITON_CACHE_DIR changes
+
+---
+ jax_triton/triton_lib.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/jax_triton/triton_lib.py b/jax_triton/triton_lib.py
+index 6740daf6..18a2a43f 100644
+--- a/jax_triton/triton_lib.py
++++ b/jax_triton/triton_lib.py
+@@ -66,7 +66,8 @@
+   pass
+ 
+ 
+-os.environ["TRITON_CACHE_DIR"] = ""
++if "TRITON_CACHE_DIR" in os.environ:
++  del os.environ["TRITON_CACHE_DIR"]
+ _JAX_TRITON_DUMP_DIR = os.environ.get("JAX_TRITON_DUMP_DIR")
+ map, unsafe_map = util.safe_map, map
+ zip, unsafe_zip = util.safe_zip, zip

@@ -1,8 +1,7 @@
 { lib
 , config
-, fetchPypi
+, fetchFromGitHub
 , buildPythonPackage
-, fetchpatch2
 , setuptools
 , setuptools-scm
 , absl-py
@@ -13,28 +12,20 @@
 , cudaSupport ? config.cudaSupport
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "jax-triton";
   version = "0.3.0";
   pyproject = true;
 
-  src = fetchPypi {
-    pname = "jax_triton";
-    inherit version;
-    hash = "sha256-2nuc2PeE3lCybRBKP0xBfAr83YlPmEQryBWoIpAAM+Y=";
+  src = fetchFromGitHub {
+    owner = "jax-ml";
+    repo = "jax-triton";
+    rev = "a298a7884054d3fc4bf94e1cb3d2a3baa907ea6b";
+    hash = "sha256-z853dxGWg3vLklYqSvapRLnhwwkPBRqtSAzGmE9rLns=";
   };
 
   patches = [
-    (fetchpatch2 {
-      name = "triton-integration.patch";
-      url = "https://github.com/jax-ml/jax-triton/compare/v0.3.0...3f0ac49e9500af39fc08dd97133f4eda16df51d2.patch";
-      hash = "sha256-+4waBcKR5QG0c8pvLrNhoq9zWVVwjifKl0/VfrtP8yo=";
-    })
-    (fetchpatch2 {
-      name = "cpu-backend.patch";
-      url = "https://github.com/jax-ml/jax-triton/pull/322.patch";
-      hash = "sha256-ZVCdgO93zzGZJI7PzUnfd4MAicBWHf8nZsQFiXR1zSQ=";
-    })
+    ./fix-cache-dir.patch
   ];
 
   build-system = [
@@ -58,7 +49,8 @@ buildPythonPackage rec {
   doCheck = cudaSupport && false;
 
   pythonImportsCheck = [
-    "jax_triton"
+    # ImportError: jax-triton requires JAX to be installed with GPU support.
+    # "jax_triton"
   ];
 
   meta = with lib; {
