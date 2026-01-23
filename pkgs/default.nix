@@ -27,14 +27,5 @@ rec {
     tensorflow-datasets = prev.tensorflow-datasets.overridePythonAttrs {
       doCheck = false;
     };
-    # use torch-no-triton to avoid recompiling when triton changes
-    torch =
-      if gpuSupport
-      then prev.torch
-      else prev.torch.override { tritonSupport = false; };
-    # TODO: gpuSupport for triton-cpu
-    triton' = final.callPackage ./triton { };
-    triton = if gpuSupport then prev.triton else final.triton-cpu;
-    triton-cpu = final.callPackage ./triton-cpu { triton = final.triton'; };
   });
 }

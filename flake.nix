@@ -42,8 +42,7 @@
             kernels
             mugrade
             pbbfmm3d
-            sphinx-immaterial
-            triton-cpu;
+            sphinx-immaterial;
         };
 
         formatter.${system} = formatter;
