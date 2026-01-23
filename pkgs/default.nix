@@ -10,21 +10,16 @@ rec {
   sleef = pkgs.callPackage ./sleef { inherit tlfloat; };
   tlfloat = pkgs.callPackage ./tlfloat { };
   python3Packages = pkgs.python313Packages.overrideScope (final: prev: {
-    blosc2 = prev.blosc2.overridePythonAttrs { doCheck = false; };
+    blosc2 = prev.blosc2.overridePythonAttrs { doCheck = !gpuSupport; };
     cola-ml = final.callPackage ./cola-ml { };
     cola-plum-dispatch = final.callPackage ./cola-plum-dispatch { };
     dppy = final.callPackage ./dppy { };
     gpjax = final.callPackage ./gpjax { };
     jax-triton = final.callPackage ./jax-triton { };
-    # not actually changing any dependencies, only in tests
-    keras = prev.keras.overridePythonAttrs { doCheck = gpuSupport; };
     mugrade = final.callPackage ./mugrade { };
     numpyro = prev.numpyro.overridePythonAttrs { doCheck = false; };
     pbbfmm3d = final.callPackage ./pbbfmm3d { };
     sphinx-immaterial = final.callPackage ./sphinx-immaterial { };
-    tables = prev.tables.overridePythonAttrs { doCheck = false; };
-    tensorflow-datasets = prev.tensorflow-datasets.overridePythonAttrs {
-      doCheck = false;
-    };
+    tables = prev.tables.overridePythonAttrs { doCheck = !gpuSupport; };
   });
 }
