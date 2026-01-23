@@ -24,8 +24,7 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
 - [DPPy](https://dppy.readthedocs.io/)
 - [GPJax](https://docs.jaxgaussianprocesses.com/)
 - [HLIBpro](https://www.hlibpro.com/)
-- [jax-triton](https://github.com/jax-ml/jax-triton) with
-  [triton-cpu support](https://github.com/jax-ml/jax-triton/pull/322)
+- [jax-triton](https://github.com/jax-ml/jax-triton)
 - (Triton) [kernels](https://github.com/triton-lang/kernels)
 - [mugrade](https://github.com/dlsyscourse/mugrade), the grading
   system for [10-714 Deep Learning Systems](https://dlsyscourse.org/)
@@ -34,7 +33,6 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
 - [sphinx-immaterial](https://jbms.github.io/sphinx-immaterial/)
   for the [cvxpy](https://github.com/cvxpy/cvxpy/pull/3021)
   [website](https://www.cvxpy.org/)
-- [triton-cpu](https://github.com/triton-lang/triton-cpu)
 
 ### Binary cache
 
