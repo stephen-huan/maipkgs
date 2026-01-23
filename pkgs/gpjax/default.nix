@@ -14,11 +14,12 @@
 , pytest-xdist
 , mktestdocs
 , networkx
+, hypothesis
 }:
 
 buildPythonPackage rec {
   pname = "gpjax";
-  version = "0.13.0";
+  version = "0.13.4";
   pyproject = true;
 
   # PyPi source doesn't contain tests
@@ -26,7 +27,7 @@ buildPythonPackage rec {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
     tag = "v${version}";
-    hash = "sha256-Sd+miiPUeNsIH19hnWfeTpN1sQizjWL8F6iccJd8/1c=";
+    hash = "sha256-85qOF4dMqWRDpTZk0cDhs6EdbOX6nS4YIKjeDhfwKF0=";
   };
 
   build-system = [
@@ -49,6 +50,7 @@ buildPythonPackage rec {
     pytest-xdist
     mktestdocs
     networkx
+    hypothesis
   ];
 
   pythonImportsCheck = [
