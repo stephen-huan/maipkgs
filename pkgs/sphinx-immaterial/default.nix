@@ -1,7 +1,8 @@
 { lib
 , fetchFromGitHub
-, buildNpmPackage
+, fetchNpmDeps
 , nodejs
+, npmHooks
 , buildPythonPackage
 , setuptools
 , setuptools_scm
@@ -32,28 +33,19 @@ buildPythonPackage rec {
     hash = "sha256-g7j+r3cdlY/rtKVWQMkZMKiTdY/0aetlKqbNGViXeUE=";
   };
 
-  npmDeps = buildNpmPackage {
-    inherit pname version src;
-
-    npmDepsHash = "sha256-3+XXPUhCKAKBDHVMwruyNlFqVlBVjSLYCWXHqWdo3UM=";
-
-    makeCacheWritable = true;
-
-    installPhase = ''
-      mkdir -p $out
-      cp -r node_modules -t $out
-    '';
+  # https://discourse.nixos.org/t/download-npmdeps-in-buildrustpackage/69550/4
+  npmDeps = fetchNpmDeps {
+    inherit src;
+    hash = "sha256-3+XXPUhCKAKBDHVMwruyNlFqVlBVjSLYCWXHqWdo3UM=";
   };
 
-  preBuild = ''
-    cp -r ${npmDeps}/node_modules -T node_modules
-    chmod +w -R node_modules
-  '';
+  makeCacheWritable = true;
 
   build-system = [
     setuptools
     setuptools_scm
     nodejs
+    npmHooks.npmConfigHook
   ];
 
   dependencies = [
