@@ -5,7 +5,7 @@
 , npmHooks
 , buildPythonPackage
 , setuptools
-, setuptools_scm
+, setuptools-scm
 , sphinx
 , markupsafe
 , pydantic
@@ -22,7 +22,7 @@
 
 buildPythonPackage rec {
   pname = "sphinx-immaterial";
-  version = "0.13.8";
+  version = "0.13.9";
   pyproject = true;
 
   # no source distributions on PyPi
@@ -30,20 +30,20 @@ buildPythonPackage rec {
     owner = "jbms";
     repo = "sphinx-immaterial";
     tag = "v${version}";
-    hash = "sha256-g7j+r3cdlY/rtKVWQMkZMKiTdY/0aetlKqbNGViXeUE=";
+    hash = "sha256-y0HUCeDlOsGks/4nVUaQiAXBmjsOQDm5NPeuftkafkk=";
   };
 
   # https://discourse.nixos.org/t/download-npmdeps-in-buildrustpackage/69550/4
   npmDeps = fetchNpmDeps {
     inherit src;
-    hash = "sha256-3+XXPUhCKAKBDHVMwruyNlFqVlBVjSLYCWXHqWdo3UM=";
+    hash = "sha256-2pP7P7XKm3Rbe62DpEeWvbnb6sNcst/bTe2hssSI7kA=";
   };
 
   makeCacheWritable = true;
 
   build-system = [
     setuptools
-    setuptools_scm
+    setuptools-scm
     nodejs
     npmHooks.npmConfigHook
   ];
