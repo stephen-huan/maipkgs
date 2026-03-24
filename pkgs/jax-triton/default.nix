@@ -1,6 +1,6 @@
 { lib
 , config
-, fetchFromGitHub
+, fetchPypi
 , buildPythonPackage
 , setuptools
 , setuptools-scm
@@ -12,16 +12,15 @@
 , cudaSupport ? config.cudaSupport
 }:
 
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "jax-triton";
-  version = "0.3.0";
+  version = "0.3.1";
   pyproject = true;
 
-  src = fetchFromGitHub {
-    owner = "jax-ml";
-    repo = "jax-triton";
-    rev = "a298a7884054d3fc4bf94e1cb3d2a3baa907ea6b";
-    hash = "sha256-z853dxGWg3vLklYqSvapRLnhwwkPBRqtSAzGmE9rLns=";
+  src = fetchPypi {
+    pname = "jax_triton";
+    inherit version;
+    hash = "sha256-juHlPfsZn1vr7b50OFTzUfww2THu3oK5U8G765wi5ZA=";
   };
 
   patches = [
