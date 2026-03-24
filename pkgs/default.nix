@@ -19,6 +19,15 @@ rec {
     keras = prev.keras.overridePythonAttrs { doCheck = false; };
     mugrade = final.callPackage ./mugrade { };
     numpyro = prev.numpyro.overridePythonAttrs { doCheck = false; };
+    # https://github.com/NixOS/nixpkgs/pull/502994
+    pyamg = prev.pyamg.overridePythonAttrs {
+      postPatch = ''
+        substituteInPlace pyproject.toml \
+          --replace-fail \
+            'setuptools_scm[toml]==8.3.0' \
+            'setuptools_scm>=8.3.0' \
+      '';
+    };
     pbbfmm3d = final.callPackage ./pbbfmm3d { };
     sphinx-immaterial = final.callPackage ./sphinx-immaterial { };
     tables = prev.tables.overridePythonAttrs { doCheck = !gpuSupport; };
