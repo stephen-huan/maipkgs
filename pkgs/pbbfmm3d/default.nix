@@ -18,14 +18,14 @@ let
 in
 buildPythonPackage {
   pname = "pbbfmm3d";
-  version = "0-unstable-2024-11-26";
+  version = "0-unstable-2026-03-24";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "stephen-huan";
     repo = "PBBFMM3D";
-    rev = "4a97e47e734a0b04e31efe0f7d24bdb1091a4b41";
-    hash = "sha256-9OPf0neQmYh6TlT+tTkiZUakJgxJdn2ZlKvFXBM1EwA=";
+    rev = "e59b1ee721af1c24f56bdd9227129de65c523125";
+    hash = "sha256-m4NZwUkx7p4Z61FsrURlXxPO4zKkB7VCLpkJh91Wf48=";
   };
 
   env = {
