@@ -19,7 +19,7 @@
 
 buildPythonPackage rec {
   pname = "gpjax";
-  version = "0.13.4";
+  version = "0.13.6";
   pyproject = true;
 
   # PyPi source doesn't contain tests
@@ -27,7 +27,7 @@ buildPythonPackage rec {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
     tag = "v${version}";
-    hash = "sha256-85qOF4dMqWRDpTZk0cDhs6EdbOX6nS4YIKjeDhfwKF0=";
+    hash = "sha256-BQAkEkyMNodPCNdPgo2rumQIOyQJtuYoTY9icqnkJaM=";
   };
 
   build-system = [
