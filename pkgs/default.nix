@@ -16,10 +16,15 @@ rec {
     dppy = final.callPackage ./dppy { };
     gpjax = final.callPackage ./gpjax { };
     jax-triton = final.callPackage ./jax-triton { };
+    keras = prev.keras.overridePythonAttrs { doCheck = false; };
     mugrade = final.callPackage ./mugrade { };
     numpyro = prev.numpyro.overridePythonAttrs { doCheck = false; };
     pbbfmm3d = final.callPackage ./pbbfmm3d { };
     sphinx-immaterial = final.callPackage ./sphinx-immaterial { };
     tables = prev.tables.overridePythonAttrs { doCheck = !gpuSupport; };
+    # https://github.com/NixOS/nixpkgs/pull/502523
+    tensorflow-datasets = prev.tensorflow-datasets.overridePythonAttrs {
+      doCheck = false;
+    };
   });
 }
