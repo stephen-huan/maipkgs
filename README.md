@@ -25,6 +25,7 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
 - [GPJax](https://docs.jaxgaussianprocesses.com/)
 - [HLIBpro](https://www.hlibpro.com/)
 - [jax-triton](https://jax-ml.github.io/jax-triton/)
+- [k-means-constrained](https://joshlk.github.io/k-means-constrained/)
 - [mugrade](https://github.com/dlsyscourse/mugrade), the grading
   system for [10-714 Deep Learning Systems](https://dlsyscourse.org/)
 - [SLEEF](https://sleef.org/) and

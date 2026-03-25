@@ -39,6 +39,7 @@
             dppy
             gpjax
             jax-triton
+            k-means-constrained
             mugrade
             pbbfmm3d
             sphinx-immaterial;

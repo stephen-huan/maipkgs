@@ -17,6 +17,7 @@ rec {
     gpjax = final.callPackage ./gpjax { };
     jax-triton = final.callPackage ./jax-triton { };
     keras = prev.keras.overridePythonAttrs { doCheck = false; };
+    k-means-constrained = final.callPackage ./k-means-constrained { };
     mugrade = final.callPackage ./mugrade { };
     numpyro = prev.numpyro.overridePythonAttrs { doCheck = false; };
     # https://github.com/NixOS/nixpkgs/pull/502994
