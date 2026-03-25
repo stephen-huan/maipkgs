@@ -17,7 +17,16 @@ rec {
     gpjax = final.callPackage ./gpjax { };
     jax-triton = final.callPackage ./jax-triton { };
     keras = prev.keras.overridePythonAttrs { doCheck = false; };
-    k-means-constrained = final.callPackage ./k-means-constrained { };
+    k-means-constrained = (
+      final.callPackage ./k-means-constrained { }
+    ).override {
+      ortools = (final.toPythonModule (pkgs.or-tools.override {
+        python3 = final.python;
+        # dangerous to unpin, but otherwise python3Packages.protobuf conflicts
+        abseil-cpp_202508 = pkgs.abseil-cpp;
+        protobuf_32 = pkgs.protobuf;
+      })).python;
+    };
     mugrade = final.callPackage ./mugrade { };
     numpyro = prev.numpyro.overridePythonAttrs { doCheck = false; };
     # https://github.com/NixOS/nixpkgs/pull/502994
