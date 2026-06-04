@@ -19,7 +19,7 @@
       in
       {
         legacyPackages.${system} = rec {
-          inherit (maipkgs) leanPackages;
+          inherit (maipkgs) leanPackages rustPackages;
           # pkgs.lean4 and pkgs.leanPackages.lean4 currently differ
           inherit (leanPackages) lean4;
           # https://nixos.org/manual/nixpkgs/stable/#overriding-python-packages
@@ -50,6 +50,8 @@
             mugrade
             pbbfmm3d
             sphinx-immaterial;
+          inherit (maipkgs.rustPackages)
+            nanoda;
         };
 
         formatter.${system} = formatter;

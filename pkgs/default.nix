@@ -52,4 +52,7 @@ rec {
       doCheck = false;
     };
   });
+  rustPackages = pkgs.rustPackages.overrideScope (final: prev: {
+    nanoda = final.callPackage ./nanoda { };
+  });
 }
