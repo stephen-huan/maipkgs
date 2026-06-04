@@ -1,0 +1,29 @@
+From e29a800977273aaafa3c14247596373286846848 Mon Sep 17 00:00:00 2001
+From: Stephen Huan <stephen.huan@cgdct.moe>
+Date: Thu, 4 Jun 2026 04:37:38 -0400
+Subject: [PATCH] build(Main.lean): hardcode git
+
+---
+ Main.lean | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/Main.lean b/Main.lean
+index bd1c143..aafc2ce 100644
+--- a/Main.lean
++++ b/Main.lean
+@@ -63,11 +63,7 @@ def getGitLocation : M System.FilePath := do return (← read).gitLocation
+ def getNanodaEnabled : M Bool := do return (← read).enableNanoda
+ 
+ def queryGitLocation : IO System.FilePath := do
+-  let out ← IO.Process.run {
+-    cmd := "which",
+-    args := #["git"],
+-    stdout := .piped,
+-  }
++  let out ← pure "@git@"
+   return out.trimAscii.toString
+ 
+ def queryLeanPrefix (projectDir : System.FilePath) : IO System.FilePath := do
+-- 
+2.53.0
+

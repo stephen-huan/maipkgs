@@ -9,6 +9,12 @@ rec {
   hlibpro = pkgs.callPackage ./hlibpro { };
   sleef = pkgs.callPackage ./sleef { inherit tlfloat; };
   tlfloat = pkgs.callPackage ./tlfloat { };
+  leanPackages = pkgs.leanPackages.overrideScope (final: prev: {
+    comparator = final.callPackage ./comparator { leanPackages = final; };
+    lean4export = final.callPackage ./lean4export { };
+    # https://github.com/leanprover/comparator/pull/49
+    lean4checker = final.callPackage ./lean4checker { };
+  });
   python3Packages = pkgs.python313Packages.overrideScope (final: prev: {
     blosc2 = prev.blosc2.overridePythonAttrs { doCheck = !gpuSupport; };
     cola-ml = final.callPackage ./cola-ml { };

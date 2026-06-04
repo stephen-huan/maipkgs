@@ -19,6 +19,9 @@
       in
       {
         legacyPackages.${system} = rec {
+          inherit (maipkgs) leanPackages;
+          # pkgs.lean4 and pkgs.leanPackages.lean4 currently differ
+          inherit (leanPackages) lean4;
           # https://nixos.org/manual/nixpkgs/stable/#overriding-python-packages
           python = maipkgs.python3Packages.python.override {
             packageOverrides = final: prev: maipkgs.python3Packages;
@@ -33,6 +36,10 @@
             hlibpro
             sleef
             tlfloat;
+          inherit (maipkgs.leanPackages)
+            comparator
+            lean4checker
+            lean4export;
           inherit (maipkgs.python3Packages)
             cola-ml
             cola-plum-dispatch
