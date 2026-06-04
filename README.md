@@ -15,12 +15,17 @@ also a flake that exposes its packages, overlays, and modules.
 All packages are exposed through the flake attribute
 `maipkgs.packages.${system}`. Python packages are additionally exposed through
 both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
-`maipkgs.legacyPackages.${system}.python.withPackages` interface.
+`maipkgs.legacyPackages.${system}.python.withPackages` interface. Lean packages
+are exposed through `maipkgs.legacyPackages.${system}.leanPackages`.
 
 - [BBFMM3D](https://github.com/ruoxi-wang/BBFMM3D) and
   (my [fork](https://github.com/stephen-huan/PBBFMM3D)
   of) [PBBFMM3D](https://github.com/ruoxi-wang/PBBFMM3D)
 - [CoLA](https://cola.readthedocs.io/en/latest/)
+- [comparator](https://github.com/leanprover/comparator/) and its
+  dependencies ([lean4export](https://github.com/leanprover/lean4export/),
+  [lean4checker](https://github.com/leanprover/lean4checker/), and
+  [nanoda](https://github.com/ammkrn/nanoda_lib/))
 - [DPPy](https://dppy.readthedocs.io/)
 - [GPJax](https://docs.jaxgaussianprocesses.com/)
 - [HLIBpro](https://www.hlibpro.com/)
