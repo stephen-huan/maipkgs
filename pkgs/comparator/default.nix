@@ -1,6 +1,7 @@
 { lib
 , fetchFromGitHub
 , leanPackages
+, replaceVars
 , git
 , landrun
 }:
@@ -18,13 +19,10 @@ leanPackages.buildLakePackage (finalAttrs: {
   };
 
   patches = [
-    ./0001-build-Main.lean-hardcode-git.patch
+    (replaceVars ./0001-build-Main.lean-hardcode-git.patch {
+      inherit git;
+    })
   ];
-
-  postPatch = ''
-    substituteInPlace Main.lean \
-      --subst-var-by git "${lib.getExe git}"
-  '';
 
   leanDeps = with leanPackages; [ lean4checker lean4export ];
 
