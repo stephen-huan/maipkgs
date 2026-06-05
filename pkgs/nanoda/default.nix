@@ -5,16 +5,16 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nanoda";
-  version = "0.3.2";
+  version = "0.3.2-unstable-2026-06-03";
 
   src = fetchFromGitHub {
     owner = "ammkrn";
     repo = "nanoda_lib";
-    tag = "v${finalAttrs.version}";
-    hash = "sha256-YKoexQz/2Z+sxdNtJfNvkZRbLFff1SXaWRzTcrU9Oz4=";
+    rev = "f58f2f6d535e189a40fcb02ede8eb95f97a92d37";
+    hash = "sha256-N/HRosc3/JHCjhsDRn5n0LpdTOQDj0SxDM/w4KuGKjk=";
   };
 
-  cargoHash = "sha256-Low43L/Yd/OLjfE+9om1gztfrdFhZptjJJEZg92m3xg=";
+  cargoHash = "sha256-mJ0/8WnzwRaH5SUeFWDJInKvg4EmdYyL4g01EIE21OI=";
 
   strictDeps = true;
   __structuredAttrs = true;
