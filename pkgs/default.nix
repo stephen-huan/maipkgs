@@ -21,6 +21,15 @@ rec {
     cola-ml = final.callPackage ./cola-ml { };
     cola-plum-dispatch = final.callPackage ./cola-plum-dispatch { };
     dppy = final.callPackage ./dppy { };
+    etils = (prev.etils.override {
+      tensorflow = pkgs.emptyDirectory;
+    }).overridePythonAttrs
+      { doCheck = false; };
+    flax = (prev.flax.override {
+      inherit (final) treescope;
+    }).overridePythonAttrs {
+      doCheck = false;
+    };
     gpjax = final.callPackage ./gpjax { };
     jax-triton = final.callPackage ./jax-triton { };
     k-means-constrained = (
@@ -36,10 +45,12 @@ rec {
     numpyro = prev.numpyro.overridePythonAttrs { doCheck = false; };
     pbbfmm3d = final.callPackage ./pbbfmm3d { };
     sphinx-immaterial = final.callPackage ./sphinx-immaterial { };
-    # https://github.com/NixOS/nixpkgs/pull/502523
-    tensorflow-datasets = prev.tensorflow-datasets.overridePythonAttrs {
+    tensorflow-datasets = (prev.tensorflow-datasets.override {
+      inherit (final) etils;
+    }).overridePythonAttrs {
       doCheck = false;
     };
+    treescope = prev.treescope.overridePythonAttrs { doCheck = !gpuSupport; };
   });
   rustPackages = pkgs.rustPackages.overrideScope (final: prev: {
     nanoda = final.callPackage ./nanoda { };
