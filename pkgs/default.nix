@@ -18,13 +18,11 @@ rec {
     lean4checker = final.callPackage ./lean4checker { };
   });
   python3Packages = pkgs.python313Packages.overrideScope (final: prev: {
-    blosc2 = prev.blosc2.overridePythonAttrs { doCheck = !gpuSupport; };
     cola-ml = final.callPackage ./cola-ml { };
     cola-plum-dispatch = final.callPackage ./cola-plum-dispatch { };
     dppy = final.callPackage ./dppy { };
     gpjax = final.callPackage ./gpjax { };
     jax-triton = final.callPackage ./jax-triton { };
-    keras = prev.keras.overridePythonAttrs { doCheck = false; };
     k-means-constrained = (
       final.callPackage ./k-means-constrained { }
     ).override {
@@ -47,7 +45,6 @@ rec {
     };
     pbbfmm3d = final.callPackage ./pbbfmm3d { };
     sphinx-immaterial = final.callPackage ./sphinx-immaterial { };
-    tables = prev.tables.overridePythonAttrs { doCheck = !gpuSupport; };
     # https://github.com/NixOS/nixpkgs/pull/502523
     tensorflow-datasets = prev.tensorflow-datasets.overridePythonAttrs {
       doCheck = false;
