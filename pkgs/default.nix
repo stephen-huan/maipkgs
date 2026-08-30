@@ -42,6 +42,7 @@ rec {
         gtest = pkgs.gtest.overrideAttrs { strictDeps = false; };
       })).python;
     };
+    lineax = prev.lineax.overridePythonAttrs { doCheck = !gpuSupport; };
     mugrade = final.callPackage ./mugrade { };
     numpyro = prev.numpyro.overridePythonAttrs { doCheck = false; };
     orbax-checkpoint = prev.orbax-checkpoint.overridePythonAttrs {
