@@ -7,6 +7,8 @@ in
 rec {
   bbfmm3d = pkgs.callPackage ./bbfmm3d { };
   hlibpro = pkgs.callPackage ./hlibpro { };
+  # https://github.com/NixOS/nixpkgs/pull/558183
+  or-tools' = pkgs.callPackage ./or-tools/package.nix { };
   sleef = pkgs.callPackage ./sleef { inherit tlfloat; };
   tlfloat = pkgs.callPackage ./tlfloat { };
   leanPackages = pkgs.leanPackages.overrideScope (final: prev: {
@@ -26,11 +28,10 @@ rec {
     k-means-constrained = (
       final.callPackage ./k-means-constrained { }
     ).override {
-      ortools = (final.toPythonModule (pkgs.or-tools.override {
+      ortools = (final.toPythonModule (or-tools'.override {
         python3 = final.python;
-        # dangerous to unpin, but otherwise python3Packages.protobuf conflicts
-        abseil-cpp_202508 = pkgs.abseil-cpp;
-        protobuf_32 = pkgs.protobuf;
+        # https://github.com/NixOS/nixpkgs/pull/557250
+        gtest = pkgs.gtest.overrideAttrs { strictDeps = false; };
       })).python;
     };
     mugrade = final.callPackage ./mugrade { };
