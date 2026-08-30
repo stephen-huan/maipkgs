@@ -21,6 +21,7 @@ rec {
     cola-ml = final.callPackage ./cola-ml { };
     cola-plum-dispatch = final.callPackage ./cola-plum-dispatch { };
     dppy = final.callPackage ./dppy { };
+    einops = prev.einops.overridePythonAttrs { doCheck = !gpuSupport; };
     etils = (prev.etils.override {
       tensorflow = pkgs.emptyDirectory;
     }).overridePythonAttrs
@@ -43,6 +44,10 @@ rec {
     };
     mugrade = final.callPackage ./mugrade { };
     numpyro = prev.numpyro.overridePythonAttrs { doCheck = false; };
+    orbax-checkpoint = prev.orbax-checkpoint.overridePythonAttrs {
+      doCheck = !gpuSupport;
+    };
+    osqp = prev.osqp.overridePythonAttrs { doCheck = !gpuSupport; };
     pbbfmm3d = final.callPackage ./pbbfmm3d { };
     sphinx-immaterial = final.callPackage ./sphinx-immaterial { };
     tensorflow-datasets = (prev.tensorflow-datasets.override {
