@@ -17,7 +17,7 @@ rec {
     # https://github.com/leanprover/comparator/pull/49
     lean4checker = final.callPackage ./lean4checker { };
   });
-  python3Packages = pkgs.python313Packages.overrideScope (final: prev: {
+  python3Packages = pkgs.python314Packages.overrideScope (final: prev: {
     cola-ml = final.callPackage ./cola-ml { };
     cola-plum-dispatch = final.callPackage ./cola-plum-dispatch { };
     dppy = final.callPackage ./dppy { };
