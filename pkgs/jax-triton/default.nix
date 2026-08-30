@@ -14,18 +14,14 @@
 
 buildPythonPackage rec {
   pname = "jax-triton";
-  version = "0.3.1";
+  version = "0.4.0";
   pyproject = true;
 
   src = fetchPypi {
     pname = "jax_triton";
     inherit version;
-    hash = "sha256-juHlPfsZn1vr7b50OFTzUfww2THu3oK5U8G765wi5ZA=";
+    hash = "sha256-Mld7FBaLdisY/hg1mV9plO48LLXpT8nq6IszEZesXuM=";
   };
-
-  patches = [
-    ./fix-cache-dir.patch
-  ];
 
   build-system = [
     setuptools
