@@ -15,7 +15,7 @@
 
 buildPythonPackage {
   pname = "k-means-constrained";
-  version = "0.9.0";
+  version = "0.9.1";
   pyproject = true;
 
   # PyPi source doesn't contain tests
@@ -23,8 +23,8 @@ buildPythonPackage {
     owner = "joshlk";
     repo = "k-means-constrained";
     # tags out of date
-    rev = "5465da91605b074dbae26635bda971eb7c85db49";
-    hash = "sha256-yk1XtBJBctJv9jTCvBqDOWH0cTXWD9r132CEeM9JwBo=";
+    rev = "d662945da2262549b48c6e844b45362a7b5fd982";
+    hash = "sha256-KLyPW7wIwcXSmXq32SH5zhTy2tykUqScXlJRwRR6rZg=";
   };
 
   build-system = [
