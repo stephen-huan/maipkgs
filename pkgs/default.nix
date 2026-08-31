@@ -4,12 +4,12 @@ let
   inherit (pkgs.config) cudaSupport rocmSupport;
   gpuSupport = cudaSupport || rocmSupport;
 in
-rec {
+pkgs.lib.fix (self: {
   bbfmm3d = pkgs.callPackage ./bbfmm3d { };
   hlibpro = pkgs.callPackage ./hlibpro { };
   # https://github.com/NixOS/nixpkgs/pull/558183
   or-tools' = pkgs.callPackage ./or-tools/package.nix { };
-  sleef = pkgs.callPackage ./sleef { inherit tlfloat; };
+  sleef = pkgs.callPackage ./sleef { inherit (self) tlfloat; };
   tlfloat = pkgs.callPackage ./tlfloat { };
   leanPackages = pkgs.leanPackages.overrideScope (final: prev: {
     comparator = final.callPackage ./comparator { leanPackages = final; };
@@ -37,7 +37,7 @@ rec {
     k-means-constrained = (
       final.callPackage ./k-means-constrained { }
     ).override {
-      ortools = (final.toPythonModule (or-tools'.override {
+      ortools = (final.toPythonModule (self.or-tools'.override {
         python3 = final.python;
         # https://github.com/NixOS/nixpkgs/pull/557250
         gtest = pkgs.gtest.overrideAttrs { strictDeps = false; };
@@ -62,4 +62,4 @@ rec {
   rustPackages = pkgs.rustPackages.overrideScope (final: prev: {
     nanoda = final.callPackage ./nanoda { };
   });
-}
+})
