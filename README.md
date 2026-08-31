@@ -22,9 +22,8 @@ are exposed through `maipkgs.legacyPackages.${system}.leanPackages`.
   (my [fork](https://github.com/stephen-huan/PBBFMM3D)
   of) [PBBFMM3D](https://github.com/ruoxi-wang/PBBFMM3D)
 - [comparator](https://github.com/leanprover/comparator/) and its
-  dependencies ([lean4export](https://github.com/leanprover/lean4export/),
-  [lean4checker](https://github.com/leanprover/lean4checker/), and
-  [nanoda](https://github.com/ammkrn/nanoda_lib/))
+  dependencies ([lean4export](https://github.com/leanprover/lean4export/)
+  and [nanoda](https://github.com/ammkrn/nanoda_lib/))
 - [DPPy](https://dppy.readthedocs.io/)
 - [GPJax](https://docs.jaxgaussianprocesses.com/)
 - [HLIBpro](https://www.hlibpro.com/)
