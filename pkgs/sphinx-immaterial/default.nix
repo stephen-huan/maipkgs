@@ -20,7 +20,7 @@
 , pyyaml
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "sphinx-immaterial";
   version = "0.13.9";
   pyproject = true;
@@ -29,13 +29,13 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "jbms";
     repo = "sphinx-immaterial";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-y0HUCeDlOsGks/4nVUaQiAXBmjsOQDm5NPeuftkafkk=";
   };
 
   # https://discourse.nixos.org/t/download-npmdeps-in-buildrustpackage/69550/4
   npmDeps = fetchNpmDeps {
-    inherit src;
+    inherit (finalAttrs) src;
     hash = "sha256-2pP7P7XKm3Rbe62DpEeWvbnb6sNcst/bTe2hssSI7kA=";
   };
 
@@ -84,4 +84,4 @@ buildPythonPackage rec {
     license = licenses.mit;
     maintainers = with maintainers; [ stephen-huan ];
   };
-}
+})

@@ -12,14 +12,14 @@
 , cudaSupport ? config.cudaSupport
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "jax-triton";
   version = "0.4.0";
   pyproject = true;
 
   src = fetchPypi {
     pname = "jax_triton";
-    inherit version;
+    inherit (finalAttrs) version;
     hash = "sha256-Mld7FBaLdisY/hg1mV9plO48LLXpT8nq6IszEZesXuM=";
   };
 
@@ -54,4 +54,4 @@ buildPythonPackage rec {
     license = licenses.asl20;
     maintainers = with maintainers; [ stephen-huan ];
   };
-}
+})

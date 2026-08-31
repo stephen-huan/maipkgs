@@ -12,7 +12,7 @@
 , torch
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "cola-ml";
   version = "0.0.7";
   pyproject = true;
@@ -20,7 +20,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "wilson-labs";
     repo = "cola";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-n7iaKycJicnqYXQPUy5pd4mbo13t8+01eITj/mQe+P8=";
   };
 
@@ -52,4 +52,4 @@ buildPythonPackage rec {
     license = licenses.asl20;
     maintainers = with maintainers; [ stephen-huan ];
   };
-}
+})

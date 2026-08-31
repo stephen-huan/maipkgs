@@ -13,14 +13,14 @@
 , treesSupport ? false
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "dppy";
   version = "0.3.3";
   pyproject = true;
 
   src = fetchPypi {
     pname = "dppy";
-    inherit version;
+    inherit (finalAttrs) version;
     hash = "sha256-z9OBspxTXmLfs0djalTLCl4Y+1yk9V4gbcnFsU47qYA=";
   };
 
@@ -65,4 +65,4 @@ buildPythonPackage rec {
     license = licenses.mit;
     maintainers = with maintainers; [ stephen-huan ];
   };
-}
+})

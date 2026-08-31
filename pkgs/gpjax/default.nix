@@ -22,7 +22,7 @@
 , hypothesis
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "gpjax";
   version = "0.18.0";
   pyproject = true;
@@ -31,7 +31,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "JaxGaussianProcesses";
     repo = "GPJax";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-JaA2ZR6ctUstrGmW1OleeYSTgrJe3KslduJjnrvmjSc=";
   };
 
@@ -94,4 +94,4 @@ buildPythonPackage rec {
     license = licenses.mit;
     maintainers = with maintainers; [ stephen-huan ];
   };
-}
+})
