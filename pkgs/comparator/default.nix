@@ -11,6 +11,9 @@ leanPackages.buildLakePackage (finalAttrs: {
   pname = "comparator";
   leanPackageName = "Comparator";
 
+  strictDeps = true;
+  __structuredAttrs = true;
+
   src = fetchFromGitHub {
     owner = "leanprover";
     repo = "comparator";
@@ -25,9 +28,6 @@ leanPackages.buildLakePackage (finalAttrs: {
   ];
 
   leanDeps = with leanPackages; [ lean4checker lean4export ];
-
-  strictDeps = true;
-  __structuredAttrs = true;
 
   doCheck = true;
 

@@ -9,15 +9,15 @@ leanPackages.buildLakePackage (finalAttrs: {
   # lowercase in its own lakefile.toml but uppercase in comparator's
   leanPackageName = "Lean4Checker";
 
+  strictDeps = true;
+  __structuredAttrs = true;
+
   src = fetchFromGitHub {
     owner = "leanprover";
     repo = "lean4checker";
     rev = "b7398199245524275543dec6113229c9bb4902e5";
     hash = "sha256-cxdEI6KBjtA6TGsAzgLqAkuzkzabw4daeM/KXkzOPG0=";
   };
-
-  strictDeps = true;
-  __structuredAttrs = true;
 
   doCheck = true;
 

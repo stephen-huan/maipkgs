@@ -7,6 +7,9 @@ leanPackages.buildLakePackage (finalAttrs: {
   version = "4.29.0";
   pname = "lean4export";
 
+  strictDeps = true;
+  __structuredAttrs = true;
+
   src = fetchFromGitHub {
     owner = "leanprover";
     repo = "lean4export";
@@ -16,9 +19,6 @@ leanPackages.buildLakePackage (finalAttrs: {
 
   # force Export.Parse target for comparator
   buildTargets = [ "lean4export" "Export.Parse:c.o.export" ];
-
-  strictDeps = true;
-  __structuredAttrs = true;
 
   doCheck = true;
 

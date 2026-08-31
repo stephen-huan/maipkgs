@@ -7,6 +7,9 @@ rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nanoda";
   version = "0.3.2-unstable-2026-06-03";
 
+  strictDeps = true;
+  __structuredAttrs = true;
+
   src = fetchFromGitHub {
     owner = "ammkrn";
     repo = "nanoda_lib";
@@ -15,9 +18,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   };
 
   cargoHash = "sha256-mJ0/8WnzwRaH5SUeFWDJInKvg4EmdYyL4g01EIE21OI=";
-
-  strictDeps = true;
-  __structuredAttrs = true;
 
   doCheck = true;
 
