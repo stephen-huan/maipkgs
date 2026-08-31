@@ -20,6 +20,7 @@ buildPythonPackage {
   pname = "pbbfmm3d";
   version = "0-unstable-2026-03-24";
   pyproject = true;
+  __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "stephen-huan";

@@ -20,6 +20,9 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "hlibpro";
   version = "3.2";
 
+  strictDeps = true;
+  __structuredAttrs = true;
+
   src = fetchzip {
     url = "https://www.hlibpro.com/archives/${finalAttrs.version}"
       + "/hlibpro-${finalAttrs.version}-${os}.tgz";

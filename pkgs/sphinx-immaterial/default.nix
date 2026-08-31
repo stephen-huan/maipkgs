@@ -24,6 +24,7 @@ buildPythonPackage (finalAttrs: {
   pname = "sphinx-immaterial";
   version = "0.13.9";
   pyproject = true;
+  __structuredAttrs = true;
 
   # no source distributions on PyPi
   src = fetchFromGitHub {

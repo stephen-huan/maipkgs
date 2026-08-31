@@ -9,6 +9,9 @@ stdenv.mkDerivation (finalAttrs: {
   version = "1.15.0";
   pname = "tlfloat";
 
+  strictDeps = true;
+  __structuredAttrs = true;
+
   src = fetchFromGitHub {
     owner = "shibatch";
     repo = "tlfloat";

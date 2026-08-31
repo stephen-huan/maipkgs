@@ -26,6 +26,7 @@ buildPythonPackage (finalAttrs: {
   pname = "gpjax";
   version = "0.18.0";
   pyproject = true;
+  __structuredAttrs = true;
 
   # PyPi source doesn't contain tests
   src = fetchFromGitHub {

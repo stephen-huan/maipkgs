@@ -17,6 +17,7 @@ buildPythonPackage {
   pname = "k-means-constrained";
   version = "0.9.1";
   pyproject = true;
+  __structuredAttrs = true;
 
   # PyPi source doesn't contain tests
   src = fetchFromGitHub {

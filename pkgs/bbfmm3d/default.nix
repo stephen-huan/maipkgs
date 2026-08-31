@@ -11,6 +11,9 @@ stdenv.mkDerivation {
   pname = "bbfmm3d";
   version = "0-unstable-2018-09-13";
 
+  strictDeps = true;
+  __structuredAttrs = true;
+
   src = fetchFromGitHub {
     owner = "ruoxi-wang";
     repo = "BBFMM3D";

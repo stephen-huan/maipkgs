@@ -14,6 +14,9 @@ stdenv.mkDerivation (finalAttrs: {
   version = "3.9.0";
   pname = "sleef";
 
+  strictDeps = true;
+  __structuredAttrs = true;
+
   src = fetchFromGitHub {
     owner = "shibatch";
     repo = "sleef";
@@ -31,8 +34,6 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.strings.cmakeBool "SLEEF_BUILD_INLINE_HEADERS" true)
     (lib.strings.cmakeBool "BUILD_SHARED_LIBS" (!enableStatic))
   ];
-
-  strictDeps = true;
 
   enableParallelBuilding = true;
 
