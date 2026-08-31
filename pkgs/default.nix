@@ -24,8 +24,9 @@ rec {
     einops = prev.einops.overridePythonAttrs { doCheck = !gpuSupport; };
     etils = (prev.etils.override {
       tensorflow = pkgs.emptyDirectory;
-    }).overridePythonAttrs
-      { doCheck = false; };
+    }).overridePythonAttrs {
+      doCheck = false;
+    };
     flax = (prev.flax.override {
       inherit (final) treescope;
     }).overridePythonAttrs {
