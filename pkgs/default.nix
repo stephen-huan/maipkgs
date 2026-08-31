@@ -14,8 +14,6 @@ pkgs.lib.fix (self: {
   leanPackages = pkgs.leanPackages.overrideScope (final: prev: {
     comparator = final.callPackage ./comparator { leanPackages = final; };
     lean4export = final.callPackage ./lean4export { };
-    # https://github.com/leanprover/comparator/pull/49
-    lean4checker = final.callPackage ./lean4checker { };
   });
   python3Packages = pkgs.python314Packages.overrideScope (final: prev: {
     dppy = final.callPackage ./dppy { };

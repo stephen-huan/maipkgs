@@ -38,7 +38,6 @@
             tlfloat;
           inherit (maipkgs.leanPackages)
             comparator
-            lean4checker
             lean4export;
           inherit (maipkgs.python3Packages)
             dppy
