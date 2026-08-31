@@ -5,7 +5,7 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nanoda";
-  version = "0.3.2-unstable-2026-06-03";
+  version = "0.3.2-unstable-2026-08-25";
 
   strictDeps = true;
   __structuredAttrs = true;
@@ -13,11 +13,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
   src = fetchFromGitHub {
     owner = "ammkrn";
     repo = "nanoda_lib";
-    rev = "f58f2f6d535e189a40fcb02ede8eb95f97a92d37";
-    hash = "sha256-N/HRosc3/JHCjhsDRn5n0LpdTOQDj0SxDM/w4KuGKjk=";
+    rev = "05055695879dfebb6628a67da88ceca6cd6b0421";
+    hash = "sha256-VDypZX82Q192kHWs17cfdXIGfqfqMXklehT/MCqbhyg=";
   };
 
-  cargoHash = "sha256-mJ0/8WnzwRaH5SUeFWDJInKvg4EmdYyL4g01EIE21OI=";
+  cargoHash = "sha256-nROCcjNZjvtnWDnsDLUMhDjIGZ2fZFUZIq/lOWIJiRg=";
 
   doCheck = true;
 
