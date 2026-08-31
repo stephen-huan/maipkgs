@@ -4,7 +4,7 @@
 }:
 
 leanPackages.buildLakePackage (finalAttrs: {
-  version = "4.29.0";
+  version = "4.30.0";
   pname = "lean4export";
 
   strictDeps = true;
@@ -14,7 +14,7 @@ leanPackages.buildLakePackage (finalAttrs: {
     owner = "leanprover";
     repo = "lean4export";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-Gu9GiVSbfJQc4mCg4UGpl7Z7wwXBcGcIbQ8XLRt9caI=";
+    hash = "sha256-kg0XW1HTJplBHznI4FM9KxSZIuQ/5P0IILp3FjDRXJA=";
   };
 
   # force Export.Parse target for comparator
