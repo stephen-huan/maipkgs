@@ -41,8 +41,6 @@
             lean4checker
             lean4export;
           inherit (maipkgs.python3Packages)
-            cola-ml
-            cola-plum-dispatch
             dppy
             gpjax
             jax-triton
