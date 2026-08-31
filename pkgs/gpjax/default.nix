@@ -87,8 +87,6 @@ buildPythonPackage (finalAttrs: {
     "gpjax"
   ];
 
-  pytestFlags = [ "." "-v" "-n auto" ];
-
   meta = with lib; {
     description = "Gaussian processes in JAX";
     homepage = "https://docs.jaxgaussianprocesses.com";
