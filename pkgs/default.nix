@@ -54,6 +54,9 @@ pkgs.lib.fix (self: {
       doCheck = false;
     };
     treescope = prev.treescope.overridePythonAttrs { doCheck = !gpuSupport; };
+    xarray = prev.xarray.overridePythonAttrs {
+      doCheck = false;
+    };
   });
   rustPackages = pkgs.rustPackages.overrideScope (final: prev: {
     nanoda = final.callPackage ./nanoda { };
