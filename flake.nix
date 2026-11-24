@@ -47,6 +47,7 @@
             meshpy
             mugrade
             pbbfmm3d
+            pymetis
             sphinx-immaterial;
           inherit (maipkgs.rustPackages)
             nanoda;
