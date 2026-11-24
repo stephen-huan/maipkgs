@@ -40,6 +40,7 @@ pkgs.lib.fix (self: {
       })).python;
     };
     lineax = prev.lineax.overridePythonAttrs { doCheck = !gpuSupport; };
+    meshpy = final.callPackage ./meshpy { };
     mugrade = final.callPackage ./mugrade { };
     numpyro = prev.numpyro.overridePythonAttrs { doCheck = false; };
     orbax-checkpoint = prev.orbax-checkpoint.overridePythonAttrs {

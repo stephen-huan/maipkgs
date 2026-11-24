@@ -44,6 +44,7 @@
             gpjax
             jax-triton
             k-means-constrained
+            meshpy
             mugrade
             pbbfmm3d
             sphinx-immaterial;
