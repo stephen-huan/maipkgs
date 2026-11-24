@@ -29,6 +29,8 @@ are exposed through `maipkgs.legacyPackages.${system}.leanPackages`.
 - [HLIBpro](https://www.hlibpro.com/)
 - [jax-triton](https://jax-ml.github.io/jax-triton/)
 - [k-means-constrained](https://joshlk.github.io/k-means-constrained/)
+- [meshpy](http://mathema.tician.de/software/meshpy)
+  and [pymetis](https://documen.tician.de/pymetis/)
 - [mugrade](https://github.com/dlsyscourse/mugrade), the grading
   system for [10-714 Deep Learning Systems](https://dlsyscourse.org/)
 - [SLEEF](https://sleef.org/) and
