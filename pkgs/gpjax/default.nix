@@ -1,7 +1,6 @@
 { lib
 , fetchFromGitHub
 , buildPythonPackage
-, fetchpatch2
 , hatchling
 , jax
 , optax
@@ -15,6 +14,7 @@
 , scipy
 , numpy
 , rich
+, xarray
 , pytestCheckHook
 , pytest-xdist
 , mktestdocs
@@ -24,36 +24,16 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "gpjax";
-  version = "0.18.0";
+  version = "1.1.0";
   pyproject = true;
 
   # PyPi source doesn't contain tests
   src = fetchFromGitHub {
-    owner = "JaxGaussianProcesses";
+    owner = "QuantClimate";
     repo = "GPJax";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-JaA2ZR6ctUstrGmW1OleeYSTgrJe3KslduJjnrvmjSc=";
+    hash = "sha256-K1EH7Lz1dabeVB0KIM6DWMj2z2kxoZhUFSAkcswyun4=";
   };
-
-  pythonRelaxDeps = [
-    "jax"
-    "jaxlib"
-  ];
-
-  patches = [
-    # https://github.com/thomaspinder/GPJax/pull/737
-    (fetchpatch2 {
-      name = "fix-mark.patch";
-      url = "https://github.com/thomaspinder/GPJax/commit/38bbe486eaeff6ca26a6457158a77e7f5b4a1307.patch?full_index=1";
-      hash = "sha256-j3lANHTi+R8WgPXl0k4kKX3ptMAHl5JTYKZ1pp924Dc=";
-    })
-    # https://github.com/thomaspinder/GPJax/pull/777
-    (fetchpatch2 {
-      name = "fix-regex.patch";
-      url = "https://github.com/thomaspinder/GPJax/commit/57bb33f986aa3564462272b0dab1d97e7cabca26.patch?full_index=1";
-      hash = "sha256-1IotFRlJp5fs/4E44kXCPetVSL5CbdBU9r3mdj+SG54=";
-    })
-  ];
 
   build-system = [
     hatchling
@@ -72,6 +52,7 @@ buildPythonPackage (finalAttrs: {
     scipy
     numpy
     rich
+    xarray
   ];
 
   nativeCheckInputs = [
