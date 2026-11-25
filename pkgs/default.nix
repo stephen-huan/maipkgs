@@ -8,8 +8,6 @@ pkgs.lib.fix (self: {
   bbfmm3d = pkgs.callPackage ./bbfmm3d { };
   hdf5_1_10 = pkgs.callPackage ./hdf5_1_10 { };
   hlibpro = pkgs.callPackage ./hlibpro { inherit (self) hdf5_1_10; };
-  # https://github.com/NixOS/nixpkgs/pull/558183
-  or-tools' = pkgs.callPackage ./or-tools/package.nix { };
   sleef = pkgs.callPackage ./sleef { inherit (self) tlfloat; };
   tlfloat = pkgs.callPackage ./tlfloat { };
   leanPackages = pkgs.leanPackages.overrideScope (final: prev: {
@@ -31,15 +29,7 @@ pkgs.lib.fix (self: {
     };
     gpjax = final.callPackage ./gpjax { };
     jax-triton = final.callPackage ./jax-triton { };
-    k-means-constrained = (
-      final.callPackage ./k-means-constrained { }
-    ).override {
-      ortools = (final.toPythonModule (self.or-tools'.override {
-        python3 = final.python;
-        # https://github.com/NixOS/nixpkgs/pull/557250
-        gtest = pkgs.gtest.overrideAttrs { strictDeps = false; };
-      })).python;
-    };
+    k-means-constrained = final.callPackage ./k-means-constrained { };
     lineax = prev.lineax.overridePythonAttrs { doCheck = !gpuSupport; };
     meshpy = final.callPackage ./meshpy { };
     mugrade = final.callPackage ./mugrade { };
