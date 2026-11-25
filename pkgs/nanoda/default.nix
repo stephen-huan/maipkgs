@@ -7,7 +7,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nanoda";
   version = "0.4.19";
 
-  strictDeps = true;
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
@@ -19,8 +18,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   };
 
   cargoHash = "sha256-BH7GdzOWBPB4cWOSQ1Dhr4XMKVqNeVmG9F9HH5UZuhk=";
-
-  doCheck = true;
 
   meta = with lib; {
     description = "External type checker for the Lean theorem prover";
