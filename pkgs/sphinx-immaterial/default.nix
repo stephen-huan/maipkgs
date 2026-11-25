@@ -22,7 +22,7 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "sphinx-immaterial";
-  version = "0.13.9";
+  version = "0.13.12";
   pyproject = true;
 
   # no source distributions on PyPi
@@ -30,7 +30,7 @@ buildPythonPackage (finalAttrs: {
     owner = "jbms";
     repo = "sphinx-immaterial";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-y0HUCeDlOsGks/4nVUaQiAXBmjsOQDm5NPeuftkafkk=";
+    hash = "sha256-nQQzejxRONj/zoZqXDcIMedQvvpjHatWV2RU4QM3zvU=";
   };
 
   # https://discourse.nixos.org/t/download-npmdeps-in-buildrustpackage/69550/4
