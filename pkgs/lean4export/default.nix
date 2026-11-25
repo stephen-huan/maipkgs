@@ -20,7 +20,11 @@ leanPackages.buildLakePackage (finalAttrs: {
   doCheck = true;
 
   checkPhase = ''
+    runHook preCheck
+
     lake test
+
+    runHook postCheck
   '';
 
   meta = with lib; {
