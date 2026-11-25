@@ -14,13 +14,13 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "jax-triton";
-  version = "0.4.0";
+  version = "0.5.0";
   pyproject = true;
 
   src = fetchPypi {
     pname = "jax_triton";
     inherit (finalAttrs) version;
-    hash = "sha256-Mld7FBaLdisY/hg1mV9plO48LLXpT8nq6IszEZesXuM=";
+    hash = "sha256-hbjXsWm9W3lOFau2D3v0dkyiip7QzwDecX/Zpg+k8/k=";
   };
 
   build-system = [
