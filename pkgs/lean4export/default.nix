@@ -14,7 +14,7 @@ leanPackages.buildLakePackage (finalAttrs: {
     hash = "sha256-LysjGOikBaaOdZdwxA+RwzfnQweTaU3kpFuWc6LxmXc=";
   };
 
-  # force Export.Parse target for comparator
+  # force Export.Parse target for lean4lean
   buildTargets = [ "lean4export" "Export.Parse:c.o.export" ];
 
   doCheck = true;
