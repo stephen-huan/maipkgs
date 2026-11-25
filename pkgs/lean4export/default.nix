@@ -7,9 +7,6 @@ leanPackages.buildLakePackage (finalAttrs: {
   version = "4.35.0";
   pname = "lean4export";
 
-  strictDeps = true;
-  __structuredAttrs = true;
-
   src = fetchFromGitHub {
     owner = "leanprover";
     repo = "lean4export";
