@@ -38,7 +38,8 @@
             tlfloat;
           inherit (maipkgs.leanPackages)
             con-leche
-            lean4export;
+            lean4export
+            lean4lean;
           inherit (maipkgs.python3Packages)
             dppy
             gpjax

@@ -13,6 +13,7 @@ pkgs.lib.fix (self: {
   leanPackages = pkgs.leanPackages.overrideScope (final: prev: {
     con-leche = final.callPackage ./con-leche { };
     lean4export = final.callPackage ./lean4export { };
+    lean4lean = final.callPackage ./lean4lean { leanPackages = final; };
   });
   python3Packages = pkgs.python314Packages.overrideScope (final: prev: {
     dppy = final.callPackage ./dppy { };
