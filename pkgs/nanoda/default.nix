@@ -21,7 +21,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   meta = with lib; {
     description = "External type checker for the Lean theorem prover";
-    homepage = "https://github.com/ammkrn/nanoda_lib/";
+    homepage = "https://github.com/ammkrn/nanoda_lib";
     license = lib.licenses.asl20;
     mainProgram = "nanoda_bin";
     maintainers = with maintainers; [ stephen-huan ];
