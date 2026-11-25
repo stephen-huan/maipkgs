@@ -48,6 +48,8 @@ pkgs.lib.fix (self: {
     };
     osqp = prev.osqp.overridePythonAttrs { doCheck = !gpuSupport; };
     pbbfmm3d = final.callPackage ./pbbfmm3d { };
+    # https://github.com/NixOS/nixpkgs/pull/592921
+    pot = final.callPackage ./pot { };
     pymetis = final.callPackage ./pymetis { inherit (final) meshpy; };
     sphinx-immaterial = final.callPackage ./sphinx-immaterial { };
     tensorflow-datasets = (prev.tensorflow-datasets.override {
