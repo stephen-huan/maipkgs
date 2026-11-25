@@ -53,6 +53,7 @@ pkgs.lib.fix (self: {
     };
   });
   rustPackages = pkgs.rustPackages.overrideScope (final: prev: {
+    con-ron = final.callPackage ./con-ron { };
     nanoda = final.callPackage ./nanoda { };
   });
 })

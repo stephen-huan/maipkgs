@@ -49,6 +49,7 @@
             pymetis
             sphinx-immaterial;
           inherit (maipkgs.rustPackages)
+            con-ron
             nanoda;
         };
 
