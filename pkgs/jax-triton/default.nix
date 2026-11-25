@@ -16,7 +16,6 @@ buildPythonPackage (finalAttrs: {
   pname = "jax-triton";
   version = "0.4.0";
   pyproject = true;
-  __structuredAttrs = true;
 
   src = fetchPypi {
     pname = "jax_triton";

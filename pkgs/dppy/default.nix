@@ -17,7 +17,6 @@ buildPythonPackage (finalAttrs: {
   pname = "dppy";
   version = "0.3.3";
   pyproject = true;
-  __structuredAttrs = true;
 
   src = fetchPypi {
     pname = "dppy";

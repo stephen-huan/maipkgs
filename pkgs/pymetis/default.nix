@@ -15,7 +15,6 @@ buildPythonPackage (finalAttrs: {
   pname = "pymetis";
   version = "2025.2.2";
   pyproject = true;
-  __structuredAttrs = true;
 
   src = fetchPypi {
     inherit (finalAttrs) pname version;

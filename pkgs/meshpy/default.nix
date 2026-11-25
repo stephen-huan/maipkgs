@@ -13,7 +13,6 @@ buildPythonPackage (finalAttrs: {
   pname = "meshpy";
   version = "2026.1.1";
   pyproject = true;
-  __structuredAttrs = true;
 
   src = fetchPypi {
     inherit (finalAttrs) pname version;

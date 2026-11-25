@@ -12,7 +12,6 @@ buildPythonPackage {
   pname = "mugrade";
   version = "1.2";
   pyproject = true;
-  __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "dlsyscourse";
