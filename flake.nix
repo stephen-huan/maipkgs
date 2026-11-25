@@ -37,7 +37,6 @@
             sleef
             tlfloat;
           inherit (maipkgs.leanPackages)
-            comparator
             lean4export;
           inherit (maipkgs.python3Packages)
             dppy

@@ -11,7 +11,6 @@ pkgs.lib.fix (self: {
   sleef = pkgs.callPackage ./sleef { inherit (self) tlfloat; };
   tlfloat = pkgs.callPackage ./tlfloat { };
   leanPackages = pkgs.leanPackages.overrideScope (final: prev: {
-    comparator = final.callPackage ./comparator { leanPackages = final; };
     lean4export = final.callPackage ./lean4export { };
   });
   python3Packages = pkgs.python314Packages.overrideScope (final: prev: {
