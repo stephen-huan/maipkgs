@@ -6,6 +6,7 @@ let
 in
 pkgs.lib.fix (self: {
   bbfmm3d = pkgs.callPackage ./bbfmm3d { };
+  hdf5_1_10 = pkgs.callPackage ./hdf5_1_10 { };
   hlibpro = pkgs.callPackage ./hlibpro { };
   # https://github.com/NixOS/nixpkgs/pull/558183
   or-tools' = pkgs.callPackage ./or-tools/package.nix { };
