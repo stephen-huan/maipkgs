@@ -19,15 +19,17 @@
       in
       {
         legacyPackages.${system} = rec {
-          inherit (maipkgs) leanPackages rustPackages;
+          inherit (maipkgs) lean4;
+          lean = lean4;
           # pkgs.lean4 and pkgs.leanPackages.lean4 currently differ
-          inherit (leanPackages) lean4;
+          leanPackages = maipkgs.leanPackages // { inherit lean4; };
           # https://nixos.org/manual/nixpkgs/stable/#overriding-python-packages
           python = maipkgs.python3Packages.python.override {
             packageOverrides = final: prev: maipkgs.python3Packages;
             self = python;
           };
           python3Packages = maipkgs.python3Packages // { inherit python; };
+          inherit (maipkgs) rustPackages;
         };
 
         packages.${system} = {
