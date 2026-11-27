@@ -15,7 +15,9 @@ also a flake that exposes its packages, overlays, and modules.
 All packages are exposed through the flake attribute
 `maipkgs.packages.${system}`. Python packages are additionally exposed through
 both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
-`maipkgs.legacyPackages.${system}.python.withPackages` interface.
+`maipkgs.legacyPackages.${system}.python.withPackages` interface. Lean packages
+are exposed through `maipkgs.legacyPackages.${system}.leanPackages`, with
+`lean`, `lean4`, and `leanPackages.lean4` all referring to the same derivation.
 
 - [BBFMM3D](https://github.com/ruoxi-wang/BBFMM3D) and
   (my [fork](https://github.com/stephen-huan/PBBFMM3D)
@@ -25,6 +27,12 @@ both `maipkgs.legacyPackages.${system}.python3Packages` as well as the
 - [HLIBpro](https://www.hlibpro.com/)
 - [jax-triton](https://jax-ml.github.io/jax-triton/)
 - [k-means-constrained](https://joshlk.github.io/k-means-constrained/)
+- [lean4lean](https://github.com/digama0/lean4lean) (and
+  [lean4export](https://github.com/leanprover/lean4export)),
+  [nanoda](https://github.com/ammkrn/nanoda_lib),
+  [con-leche](https://github.com/leanprover/con-leche),
+  and [con-ron](https://github.com/leanprover/con-ron),
+  alternative [lean](https://lean-lang.org/) kernels
 - [meshpy](http://mathema.tician.de/software/meshpy)
   and [pymetis](https://documen.tician.de/pymetis/)
 - [mugrade](https://github.com/dlsyscourse/mugrade), the grading
