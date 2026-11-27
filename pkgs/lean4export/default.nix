@@ -1,9 +1,9 @@
 { lib
 , fetchFromGitHub
-, leanPackages
+, buildLakePackage
 }:
 
-leanPackages.buildLakePackage (finalAttrs: {
+buildLakePackage (finalAttrs: {
   version = "4.35.0";
   pname = "lean4export";
 
